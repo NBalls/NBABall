@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="ball.drive.com.nbaball.MainActivity">
 
     <Button
-        android:id="@+id/bt_team_group"
+        android:id="@+id/btTeamGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="获取球队列表信息"
@@ -16,6 +17,7 @@
         />
 
     <Button
+        android:id="@+id/bt_team_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="获取球队详细信息"
@@ -24,6 +26,7 @@
         />
 
     <Button
+        android:id="@+id/bt_team_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="获取球队比赛信息"
