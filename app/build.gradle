@@ -42,6 +42,8 @@ dependencies {
     compile "org.jetbrains.anko:anko-support-v4:0.9"
     compile "org.jetbrains.anko:anko-appcompat-v7:0.9"
     compile 'me.yokeyword:fragmentation:1.3.3'
+    compile "com.android.support:appcompat-v7:26.1.0"
+    compile "com.android.support:design:26.1.0"
 
 }
 repositories {
