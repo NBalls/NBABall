@@ -45,3 +45,20 @@ class CommonSeason {
     val year: String = ""
     val yearDisplay: String = ""
 }
+
+class CommonProfile {
+    val abbr: String = ""
+    val city: String = ""
+    val cityEn: String = ""
+    val code: String = ""
+    val conference: String = ""
+    val displayAbbr: String = ""
+    val displayConference:  String = ""
+    val division: String = ""
+    val id: String = ""
+    val isAllStarTeam: Boolean = false
+    val isLeagueTeam: Boolean = false
+    val leagueId: String = ""
+    val name: String = ""
+    val nameEn: String = ""
+}

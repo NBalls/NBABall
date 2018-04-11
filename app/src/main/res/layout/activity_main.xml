@@ -17,7 +17,7 @@
         />
 
     <Button
-        android:id="@+id/bt_team_info"
+        android:id="@+id/btTeamStats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="获取球队详细信息"
@@ -26,10 +26,28 @@
         />
 
     <Button
-        android:id="@+id/bt_team_schedule"
+        android:id="@+id/btTeamStanding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="获取球队比赛信息"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/btTeamPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取球队队员信息"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/btTeamSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取比赛赛程信息"
         android:padding="5dp"
         android:layout_margin="10dp"
         />
