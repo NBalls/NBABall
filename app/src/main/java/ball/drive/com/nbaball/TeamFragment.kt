@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import ball.drive.com.nbaball.entity.TeamGroup
 import ball.drive.com.nbaball.entity.common.CommonProfile
+import ball.drive.com.nbaball.event.TeamItemClickEvent
+import ball.drive.com.nbaball.event.postEvent
 import ball.drive.com.nbaball.network.APIClient
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.onClick
@@ -20,7 +22,7 @@ import java.util.*
 /**
  * Created by aaron on 2018/4/11.
  */
-class TeamFragment: SupportFragment() {
+class TeamFragment: BaseFragment() {
 
     private val recyclerView by lazy {
         view!!.findViewById<RecyclerView>(R.id.recyclerView)
@@ -96,7 +98,7 @@ class TeamViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         itemView.findViewById<TextView>(R.id.teamPosition).text = commonProfile.displayConference
 
         itemView.onClick {
-            
+            postEvent(TeamItemClickEvent(""))
         }
     }
 }
