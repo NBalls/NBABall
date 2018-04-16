@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import ball.drive.com.nbaball.event.TeamItemClickEvent
 import com.hwangjr.rxbus.annotation.Subscribe
-import me.yokeyword.fragmentation.SupportFragment
 
 /**
  * Created by aaron on 2018/4/11.
@@ -27,7 +26,7 @@ class MainFragment: BaseFragment() {
 
     @Subscribe
     fun onTeamItemClickEvent(event: TeamItemClickEvent) {
-        start(createTeamStatsFragment())
+        start(createTeamStatsFragment(event.teamId))
     }
 }
 

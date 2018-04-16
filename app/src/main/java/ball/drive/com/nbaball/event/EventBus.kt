@@ -9,4 +9,4 @@ fun postEvent(event: Any) {
     RxBus.get().post(event)
 }
 
-data class TeamItemClickEvent(val sender: String)
+data class TeamItemClickEvent(val teamId: String)

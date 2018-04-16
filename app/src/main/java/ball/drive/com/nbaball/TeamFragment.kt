@@ -98,7 +98,7 @@ class TeamViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         itemView.findViewById<TextView>(R.id.teamPosition).text = commonProfile.displayConference
 
         itemView.onClick {
-            postEvent(TeamItemClickEvent(""))
+            postEvent(TeamItemClickEvent(commonProfile.id))
         }
     }
 }

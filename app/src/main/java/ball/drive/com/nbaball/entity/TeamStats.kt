@@ -29,27 +29,27 @@ class TeamsStats {
 }
 
 class StatsAverage {
-    val assistsPg = 0.0f
-    val blocksPg = 0.0f
+    val assistsPg = 0.0f// 助攻
+    val blocksPg = 0.0f// 盖帽
     val defRebsPg = 0.0f
     val efficiency = 0
-    val fgaPg = 0.0f
-    val fgmPg = 0.0f
-    val fgpct = 0.0f
+    val fgaPg = 0.0f // 出手次数
+    val fgmPg = 0.0f //
+    val fgpct = 0.0f // 命中率
     val foulsPg = 0.0f
-    val ftaPg = 0.0f
-    val ftmPg = 0.0f
-    val ftpct = 0.0f
+    val ftaPg = 0.0f// 罚球次数
+    val ftmPg = 0.0f// 罚球得分
+    val ftpct = 0.0f// 罚球命中率
     val games = 0
     val gamesStarted = ""
     val minsPg = 0.0f
     val offRebsPg = 0.0f
-    val pointsPg = 0.0f
-    val rebsPg = 0.0f
-    val stealsPg = 0.0f
-    val tpaPg = 0.0f
+    val pointsPg = 0.0f// 平均得分
+    val rebsPg = 0.0f// 篮板个数
+    val stealsPg = 0.0f// 抢断个数
+    val tpaPg = 0.0f// 三分出手次数
     val tpmPg = 0.0f
-    val tppct = 0.0f
+    val tppct = 0.0f// 三分命中率
     val turnoversPg = 0.0f
 }
 
