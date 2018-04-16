@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="numbers">
+        <item>0场</item>
+        <item>1场</item>
+        <item>2场</item>
+        <item>3场</item>
+        <item>4场</item>
+        <item>5场</item>
+        <item>6场</item>
+        <item>7场</item>
+        <item>8场</item>
+        <item>9场</item>
+    </string-array>
+</resources>

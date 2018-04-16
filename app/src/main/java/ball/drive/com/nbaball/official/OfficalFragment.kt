@@ -1,4 +1,4 @@
-package ball.drive.com.nbaball
+package ball.drive.com.nbaball.official
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import ball.drive.com.nbaball.BaseFragment
+import ball.drive.com.nbaball.R
+import ball.drive.com.nbaball.event.OfficialItemClickEvent
+import ball.drive.com.nbaball.event.postEvent
 import org.jetbrains.anko.onClick
 
 /**
@@ -21,7 +25,7 @@ class OfficialFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view?.findViewById<LinearLayout>(R.id.ztsLayout)?.onClick {
-            Toast.makeText(context, "侦探社", Toast.LENGTH_SHORT).show()
+            postEvent(OfficialItemClickEvent(""))
         }
 
         view?.findViewById<LinearLayout>(R.id.lsqtLayout)?.onClick {

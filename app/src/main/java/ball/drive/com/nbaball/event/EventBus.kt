@@ -10,3 +10,5 @@ fun postEvent(event: Any) {
 }
 
 data class TeamItemClickEvent(val teamId: String)
+
+data class OfficialItemClickEvent(val sender: String)

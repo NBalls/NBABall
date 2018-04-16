@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import ball.drive.com.nbaball.event.OfficialItemClickEvent
 import ball.drive.com.nbaball.event.TeamItemClickEvent
+import ball.drive.com.nbaball.official.OfficialFragment
+import ball.drive.com.nbaball.official.createOfficialFragment
+import ball.drive.com.nbaball.official.createZtsFragment
 import com.hwangjr.rxbus.annotation.Subscribe
 import org.jetbrains.anko.onClick
 
@@ -40,6 +44,11 @@ class MainFragment: BaseFragment() {
         view?.findViewById<LinearLayout>(R.id.scheduleLayout)?.onClick {
             Toast.makeText(context, "正在开发中.....", Toast.LENGTH_LONG).show()
         }
+    }
+
+    @Subscribe
+    fun onOfficialItemClickEvent(event: OfficialItemClickEvent) {
+        start(createZtsFragment())
     }
 
     @Subscribe
