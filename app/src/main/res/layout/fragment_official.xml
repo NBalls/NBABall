@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:id="@+id/ztsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/item_background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="侦探社"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lsqtLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/item_background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="猎手球探"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/acfyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/item_background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="澳彩风云"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lqzqxLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/item_background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="篮球最前线"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lqsjLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/item_background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="篮彩圣经"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/qskLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/item_background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="青衫客"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

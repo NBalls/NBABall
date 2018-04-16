@@ -26,10 +26,30 @@
         >
 
         <LinearLayout
+            android:id="@+id/officialLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@drawable/item_background"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="文案"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/teamLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/item_background"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -42,10 +62,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/scheduleLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@drawable/item_background"
             >
             <TextView
                 android:layout_width="wrap_content"

@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Toast
 import ball.drive.com.nbaball.event.TeamItemClickEvent
 import com.hwangjr.rxbus.annotation.Subscribe
+import org.jetbrains.anko.onClick
 
 /**
  * Created by aaron on 2018/4/11.
@@ -13,6 +16,7 @@ import com.hwangjr.rxbus.annotation.Subscribe
 class MainFragment: BaseFragment() {
 
     private lateinit var teamFragment: TeamFragment
+    private lateinit var officialFragment: OfficialFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -21,7 +25,21 @@ class MainFragment: BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         teamFragment = createTeamFragment()
-        loadRootFragment(R.id.mainContainerLayout, teamFragment)
+        officialFragment = createOfficialFragment()
+        loadMultipleRootFragment(R.id.mainContainerLayout, 0,
+                officialFragment, teamFragment)
+
+        view?.findViewById<LinearLayout>(R.id.officialLayout)?.onClick {
+            showHideFragment(officialFragment)
+        }
+
+        view?.findViewById<LinearLayout>(R.id.teamLayout)?.onClick {
+            showHideFragment(teamFragment)
+        }
+
+        view?.findViewById<LinearLayout>(R.id.scheduleLayout)?.onClick {
+            Toast.makeText(context, "正在开发中.....", Toast.LENGTH_LONG).show()
+        }
     }
 
     @Subscribe
