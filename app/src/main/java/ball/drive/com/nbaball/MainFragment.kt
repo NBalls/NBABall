@@ -21,6 +21,7 @@ class MainFragment: BaseFragment() {
 
     private lateinit var teamFragment: TeamFragment
     private lateinit var officialFragment: OfficialFragment
+    private lateinit var scheduleFragment: ScheduleFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -30,8 +31,9 @@ class MainFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         teamFragment = createTeamFragment()
         officialFragment = createOfficialFragment()
+        scheduleFragment = createScheduleFragment()
         loadMultipleRootFragment(R.id.mainContainerLayout, 0,
-                officialFragment, teamFragment)
+                officialFragment, teamFragment, scheduleFragment)
 
         view?.findViewById<LinearLayout>(R.id.officialLayout)?.onClick {
             showHideFragment(officialFragment)
@@ -42,7 +44,7 @@ class MainFragment: BaseFragment() {
         }
 
         view?.findViewById<LinearLayout>(R.id.scheduleLayout)?.onClick {
-            Toast.makeText(context, "正在开发中.....", Toast.LENGTH_LONG).show()
+            showHideFragment(scheduleFragment)
         }
     }
 
