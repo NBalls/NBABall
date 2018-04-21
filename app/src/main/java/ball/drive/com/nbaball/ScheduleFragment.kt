@@ -45,15 +45,42 @@ class ScheduleFragment: BaseFragment() {
             view?.findViewById<EditText>(R.id.etRate3).setText("")
         }
 
+        view?.findViewById<Button>(R.id.btResetTs)?.onClick {
+            view?.findViewById<EditText>(R.id.etX).setText("")
+            view?.findViewById<EditText>(R.id.etY).setText("")
+        }
+
         view?.findViewById<Button>(R.id.btE1)?.onClick {
             val r1 = view?.findViewById<EditText>(R.id.etRate1).text.toString().toFloat()
             val r2 = view?.findViewById<EditText>(R.id.etRate2).text.toString().toFloat()
             val r3 = view?.findViewById<EditText>(R.id.etRate3).text.toString().toFloat()
-            val x = view?.findViewById<EditText>(R.id.etX1).text.toString().toFloat()
-            val y = view?.findViewById<EditText>(R.id.etY1).text.toString().toFloat()
+            val x = view?.findViewById<EditText>(R.id.etX).text.toString().toFloat()
+            val y = view?.findViewById<EditText>(R.id.etY).text.toString().toFloat()
 
             view?.findViewById<EditText>(R.id.etEl1)?.setText(DecimalFormat("0.000").format(r1 * x))
             view?.findViewById<EditText>(R.id.etEr1)?.setText(DecimalFormat("0.000").format(r2* 0.5 * y + r3 * y))
+        }
+
+        view?.findViewById<Button>(R.id.btE2)?.onClick {
+            val r1 = view?.findViewById<EditText>(R.id.etRate1).text.toString().toFloat()
+            val r2 = view?.findViewById<EditText>(R.id.etRate2).text.toString().toFloat()
+            val r3 = view?.findViewById<EditText>(R.id.etRate3).text.toString().toFloat()
+            val x = view?.findViewById<EditText>(R.id.etX).text.toString().toFloat()
+            val y = view?.findViewById<EditText>(R.id.etY).text.toString().toFloat()
+
+            view?.findViewById<EditText>(R.id.etEl2)?.setText(DecimalFormat("0.000").format(r1 * x))
+            view?.findViewById<EditText>(R.id.etEr2)?.setText(DecimalFormat("0.000").format(r3 * y))
+        }
+
+        view?.findViewById<Button>(R.id.btE3)?.onClick {
+            val r1 = view?.findViewById<EditText>(R.id.etRate1).text.toString().toFloat()
+            val r2 = view?.findViewById<EditText>(R.id.etRate2).text.toString().toFloat()
+            val r3 = view?.findViewById<EditText>(R.id.etRate3).text.toString().toFloat()
+            val x = view?.findViewById<EditText>(R.id.etX).text.toString().toFloat()
+            val y = view?.findViewById<EditText>(R.id.etY).text.toString().toFloat()
+
+            view?.findViewById<EditText>(R.id.etEl3)?.setText(DecimalFormat("0.000").format(r1 * x))
+            view?.findViewById<EditText>(R.id.etEr3)?.setText(DecimalFormat("0.000").format(r2 * y + r3 * y))
         }
     }
 }

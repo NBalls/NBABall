@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/layout_background"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="亚盘贴水："
+            />
+
+        <EditText
+            android:id="@+id/etX"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:hint="上盘贴水"
+            android:padding="5dp"
+            android:background="@drawable/edit_background"
+            />
+
+        <EditText
+            android:id="@+id/etY"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:hint="下盘贴水"
+            android:padding="5dp"
+            android:background="@drawable/edit_background"
+            />
+
+        <Button
+            android:id="@+id/btResetTs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重置"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            />
+    </LinearLayout>
+</LinearLayout>

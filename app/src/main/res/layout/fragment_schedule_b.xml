@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="平半球公式:"
+            android:text="半球公式:"
             android:textSize="16sp"
             android:textColor="@android:color/black"
             />
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@android:color/black"
-            android:text="A * X - B * 0.5 * Y - C * Y"
+            android:text="A * X - B * Y - C * Y"
             android:layout_marginLeft="10dp"
             />
     </LinearLayout>
@@ -40,7 +40,7 @@
         android:layout_marginTop="10dp"
         >
         <Button
-            android:id="@+id/btE1"
+            android:id="@+id/btE3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="确定"
@@ -58,7 +58,7 @@
             />
 
         <EditText
-            android:id="@+id/etEl1"
+            android:id="@+id/etEl3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -80,7 +80,7 @@
             />
 
         <EditText
-            android:id="@+id/etEr1"
+            android:id="@+id/etEr3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
