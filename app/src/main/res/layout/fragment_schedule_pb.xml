@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/layout_background"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="平半球公式:"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="A*X-B*0.5*Y-C*Y"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="X:"
+            android:layout_marginLeft="10dp"
+            />
+
+        <EditText
+            android:id="@+id/etX1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:hint="上盘贴水"
+            android:padding="5dp"
+            android:background="@drawable/edit_background"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="Y:"
+            android:layout_marginLeft="10dp"
+            />
+
+        <EditText
+            android:id="@+id/etY1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:hint="下盘贴水"
+            android:padding="5dp"
+            android:background="@drawable/edit_background"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <Button
+            android:id="@+id/btE1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="上盘盈利："
+            android:layout_marginLeft="10dp"
+            />
+
+        <EditText
+            android:id="@+id/etEl1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:background="@drawable/edit_background"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:text="下盘盈利"
+            android:layout_marginLeft="10dp"
+            />
+
+        <EditText
+            android:id="@+id/etEr1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:background="@drawable/edit_background"
+            />
+    </LinearLayout>
+</LinearLayout>
