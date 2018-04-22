@@ -23,6 +23,8 @@
         <include layout="@layout/fragment_schedule_b" />
 
         <include layout="@layout/fragment_schedule_by" />
+
+        <include layout="@layout/fragment_schedule_y" />
     </LinearLayout>
 
 </ScrollView>
