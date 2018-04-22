@@ -33,7 +33,7 @@ class MainFragment: BaseFragment() {
         officialFragment = createOfficialFragment()
         scheduleFragment = createScheduleFragment()
         loadMultipleRootFragment(R.id.mainContainerLayout, 0,
-                officialFragment, teamFragment, scheduleFragment)
+                scheduleFragment, officialFragment, teamFragment)
 
         view?.findViewById<LinearLayout>(R.id.officialLayout)?.onClick {
             showHideFragment(officialFragment)
