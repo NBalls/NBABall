@@ -17,5 +17,9 @@ class URLClient {
         val TEAM_LEADER_URL = "http://china.nba.com/static/data/team/leader_raptors.json"
 
         val TEAM_SCHEDULE_URL = "http://china.nba.com/static/data/season/schedule_7.json"
+
+
+
+        val GAME_DATA_URL = "http://live.titan007.com/"
     }
 }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import ball.drive.com.nbaball.event.OfficialItemClickEvent
 import ball.drive.com.nbaball.event.TeamItemClickEvent
 import ball.drive.com.nbaball.official.OfficialFragment
@@ -22,6 +21,7 @@ class MainFragment: BaseFragment() {
     private lateinit var teamFragment: TeamFragment
     private lateinit var officialFragment: OfficialFragment
     private lateinit var scheduleFragment: ScheduleFragment
+    private lateinit var grabFragment: GrabFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -32,8 +32,9 @@ class MainFragment: BaseFragment() {
         teamFragment = createTeamFragment()
         officialFragment = createOfficialFragment()
         scheduleFragment = createScheduleFragment()
+        grabFragment = createGrabFragment()
         loadMultipleRootFragment(R.id.mainContainerLayout, 0,
-                scheduleFragment, officialFragment, teamFragment)
+                scheduleFragment, grabFragment, officialFragment, teamFragment)
 
         view?.findViewById<LinearLayout>(R.id.officialLayout)?.onClick {
             showHideFragment(officialFragment)
@@ -45,6 +46,10 @@ class MainFragment: BaseFragment() {
 
         view?.findViewById<LinearLayout>(R.id.scheduleLayout)?.onClick {
             showHideFragment(scheduleFragment)
+        }
+
+        view?.findViewById<LinearLayout>(R.id.grabLayout)?.onClick {
+            showHideFragment(grabFragment)
         }
     }
 

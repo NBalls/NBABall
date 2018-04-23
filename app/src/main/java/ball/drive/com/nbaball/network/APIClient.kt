@@ -2,8 +2,10 @@ package ball.drive.com.nbaball.network
 
 import ball.drive.com.nbaball.entity.*
 import com.google.gson.Gson
+import org.json.JSONObject
 import rx.Observable
 import java.util.*
+import kotlin.collections.HashMap
 
 /**
  * Created by aaron on 2018/4/9.
@@ -44,5 +46,9 @@ class APIClient {
                 .map { jsonObject ->
                     Gson().fromJson(jsonObject.toString(), TeamSchedule::class.java)
                 }
+    }
+
+    fun requestGameData(): Observable<String> {
+        return netClient.doGetRequestHtml(URLClient.GAME_DATA_URL, HashMap<String, String>())
     }
 }
