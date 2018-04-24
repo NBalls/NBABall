@@ -22,6 +22,7 @@ class MainFragment: BaseFragment() {
     private lateinit var officialFragment: OfficialFragment
     private lateinit var scheduleFragment: ScheduleFragment
     private lateinit var grabFragment: GrabFragment
+    private lateinit var emailFragment: EmailFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -33,8 +34,9 @@ class MainFragment: BaseFragment() {
         officialFragment = createOfficialFragment()
         scheduleFragment = createScheduleFragment()
         grabFragment = createGrabFragment()
+        emailFragment = createEmailFragment()
         loadMultipleRootFragment(R.id.mainContainerLayout, 0,
-                scheduleFragment, grabFragment, officialFragment, teamFragment)
+                scheduleFragment, grabFragment, officialFragment, teamFragment, emailFragment)
 
         view?.findViewById<LinearLayout>(R.id.officialLayout)?.onClick {
             showHideFragment(officialFragment)
@@ -50,6 +52,10 @@ class MainFragment: BaseFragment() {
 
         view?.findViewById<LinearLayout>(R.id.grabLayout)?.onClick {
             showHideFragment(grabFragment)
+        }
+
+        view?.findViewById<LinearLayout>(R.id.emailLayout)?.onClick {
+            showHideFragment(emailFragment)
         }
     }
 
