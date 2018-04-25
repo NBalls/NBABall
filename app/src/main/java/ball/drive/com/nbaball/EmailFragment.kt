@@ -41,7 +41,7 @@ class EmailFragment: BaseFragment() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ mList ->
                         val intent = Intent(Intent.ACTION_SEND)
-                        for (i in 0..99) {
+                        for (i in 0..49) {
                             tos[i] = mList[i]
                         }
                         intent.putExtra(Intent.EXTRA_EMAIL, tos)
@@ -86,11 +86,6 @@ fun createEmailFragment(): EmailFragment {
 }
 
 val tos = arrayOf("", "", "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "", "", "",
         "", "", "", "", "", "", "", "", "", "",
         "", "", "", "", "", "", "", "", "", "",
         "", "", "", "", "", "", "", "", "", "",
