@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/layout_background"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btResult1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="平球"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            />
+
+        <Button
+            android:id="@+id/btResult2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="平半"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            />
+        <Button
+            android:id="@+id/btResult3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="半球"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            />
+
+        <Button
+            android:id="@+id/btResult4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="半一"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            />
+        <Button
+            android:id="@+id/btResult5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="一球"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="诸葛看球本场推荐："
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="上盘胜率73%，下盘胜率27%，本场比赛推荐上盘盘-0.5赢，竞彩胜"
+        />
+</LinearLayout>

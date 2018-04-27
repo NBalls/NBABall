@@ -10,23 +10,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <include layout="@layout/fragment_schedule_xs" />
+        <include layout="@layout/fragment_schedule_forward" />
 
+        <!-- 系数 -->
+        <include layout="@layout/fragment_schedule_xs"
+            android:visibility="gone"
+            />
+        <!-- 赔率 -->
         <include layout="@layout/fragment_schedule_gl" />
-
+        <!-- 贴水 -->
         <include layout="@layout/fragment_schedule_ts" />
+        <!-- 结论 -->
+        <include layout="@layout/fragment_schedule_result" />
 
-        <include layout="@layout/fragment_schedule_pb" />
-
-        <include layout="@layout/fragment_schedule_p" />
-
-        <include layout="@layout/fragment_schedule_b" />
-
-        <include layout="@layout/fragment_schedule_by" />
-
-        <include layout="@layout/fragment_schedule_y" />
-
-        <include layout="@layout/fragment_schedule_explain" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+            <!-- 平半 -->
+            <include layout="@layout/fragment_schedule_pb"
+                />
+            <!-- 平球 -->
+            <include layout="@layout/fragment_schedule_p" />
+            <!-- 半球 -->
+            <include layout="@layout/fragment_schedule_b" />
+            <!-- 半一 -->
+            <include layout="@layout/fragment_schedule_by" />
+            <!-- 一球 -->
+            <include layout="@layout/fragment_schedule_y" />
+            <!-- 解释 -->
+            <include layout="@layout/fragment_schedule_explain" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

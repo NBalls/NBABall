@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="使用说明："
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@android:color/black"
             />
 
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="1、调节系数默认为0.9，默认保持不变"
             />
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="2、计算时需要输入正确的欧赔赔率（注意上下盘的顺序）"
             />
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="3、计算时需要输入正确的上下盘贴水"
             />
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="4、每场比赛只可选择一个让分公式"
             />
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="5、计算结果出来之后，选择较小盈利方为推荐方"
             />
@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="6、计算推荐方还需与近期同欧赔胜率作比较，看是否相同"
             />
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="7、本计算工具不支持一球以上比赛推荐"
             />
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="8、本计算工具支持一球比赛，但是能避免推荐一球比赛则避免，对一球比赛推荐的胜率有待提高"
             />

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/layout_background"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="解释说明"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1、本软件所有权为诸葛看球所有任何人不得私自盗用使用本软件"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2、本软件集多年博彩行业专家，IT行业专家之力通过大数据分析建模推算比赛结果"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3、本软件推荐结果均为概率结果，任何比赛都不可能做到100%的正确率"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4、本软件经过了对数万场比赛的分析建模，正确到达到80%以上"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"
+        />
+</LinearLayout>

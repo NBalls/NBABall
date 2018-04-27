@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:text="亚盘贴水："
             />
@@ -25,7 +25,7 @@
             android:id="@+id/etX"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
@@ -39,7 +39,7 @@
             android:id="@+id/etY"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="重置"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
             />
     </LinearLayout>
