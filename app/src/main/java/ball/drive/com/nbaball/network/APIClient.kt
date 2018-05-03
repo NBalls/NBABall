@@ -51,4 +51,10 @@ class APIClient {
     fun requestGameData(): Observable<String> {
         return netClient.doGetRequestHtml(URLClient.GAME_DATA_URL, HashMap<String, String>())
     }
+
+    fun requestTradeData(): Observable<String> {
+        return netClient.doGetRequestHtml(URLClient.GAME_TRADE_DATA_URL, HashMap<String, String>())
+    }
+
+
 }

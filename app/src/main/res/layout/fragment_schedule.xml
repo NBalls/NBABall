@@ -13,7 +13,8 @@
         <include layout="@layout/fragment_schedule_forward" />
 
         <!-- 系数 -->
-        <include layout="@layout/fragment_schedule_xs"
+        <include
+            layout="@layout/fragment_schedule_xs"
             android:visibility="gone"
             />
         <!-- 赔率 -->
@@ -21,13 +22,15 @@
         <!-- 贴水 -->
         <include layout="@layout/fragment_schedule_ts" />
         <!-- 结论 -->
-        <include layout="@layout/fragment_schedule_result" />
-
+        <include
+            layout="@layout/fragment_schedule_result"
+            android:visibility="gone"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             >
             <!-- 平半 -->
             <include layout="@layout/fragment_schedule_pb"

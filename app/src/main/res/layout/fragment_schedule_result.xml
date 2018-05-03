@@ -76,7 +76,62 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="16sp"
+        android:visibility="gone"
         android:textColor="@android:color/black"
-        android:text="上盘胜率73%，下盘胜率27%，本场比赛推荐上盘盘-0.5赢，竞彩胜"
+        android:text="上盘胜率73%，下盘胜率27%，本场比赛推荐上盘盘-0.75赢，竞彩胜"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="胜率70%以上比赛四场，分别是："
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="瑞典甲 瓦尔贝里VS迪格弗斯 推荐迪格弗斯，信心指数76%"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="国际友谊 阿尔巴尼亚VS科索沃 推荐阿尔巴尼亚，信心指数74%"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="国际友谊 阿尔巴尼亚VS科索沃 推荐阿尔巴尼亚，信心指数74%"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="国际友谊 阿塞拜疆VS吉尔吉斯斯坦 推荐阿塞拜疆，信心指数73%"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="瑞典甲 瓦纳默VS法尔肯堡 推荐法尔肯堡，信心指数71%"
         />
 </LinearLayout>

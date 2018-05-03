@@ -15,9 +15,17 @@ import org.jetbrains.anko.onClick
 
 /**
  * Created by aaron on 2018/4/11.
+ * 主页面Fragment包含:计算页面，文案页面，拉取页面，Email页面
  */
 class MainFragment: BaseFragment() {
 
+    /**
+     * 团队页面
+     * 文案页面
+     * 计算页面
+     * 胜率页面
+     * Email页面
+     */
     private lateinit var teamFragment: TeamFragment
     private lateinit var officialFragment: OfficialFragment
     private lateinit var scheduleFragment: ScheduleFragment

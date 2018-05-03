@@ -1,12 +1,10 @@
 package ball.drive.com.nbaball.network
 
-import android.util.Log
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import rx.Observable
 import java.io.IOException
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by aaron on 2018/4/9.
@@ -16,9 +14,9 @@ class NetClient {
     private val okHttpClient: OkHttpClient by lazy {
         val clientBuilder = OkHttpClient.Builder()
         clientBuilder
-                .connectTimeout(20, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS)
+                // .connectTimeout(20, TimeUnit.SECONDS)
+                // .readTimeout(20, TimeUnit.SECONDS)
+                // .writeTimeout(20, TimeUnit.SECONDS)
                 .build()
     }
 
@@ -114,7 +112,6 @@ class NetClient {
             sb.append("&").append(entry.key).append("=").append(entry.value)
         }
 
-        Log.i("########", sb.toString())
         return Request.Builder().get().url(sb.toString()).build()
     }
 }

@@ -20,6 +20,7 @@ import java.util.*
 
 /**
  * Created by aaron on 2018/4/11.
+ * 抓取页面
  */
 class GrabFragment: BaseFragment() {
 
@@ -34,12 +35,11 @@ class GrabFragment: BaseFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        apiClient.requestGameData()
+        apiClient.requestTradeData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ jsonObject ->
                     Log.i("#####", jsonObject.toString())
-
                 }, {})
     }
 }
