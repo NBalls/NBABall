@@ -45,6 +45,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:26.1.0"
     compile "com.android.support:design:26.1.0"
     compile 'com.hwangjr.rxbus:rxbus:1.0.5'
+    compile "org.jsoup:jsoup:1.11.3"
 
 }
 repositories {
