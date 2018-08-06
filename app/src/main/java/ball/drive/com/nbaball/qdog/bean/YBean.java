@@ -2,8 +2,8 @@ package ball.drive.com.nbaball.qdog.bean;
 
 /**
  * Created by aaron on 2018/7/24.
+ * 亚盘数据
  */
-
 public class YBean {
     public String company = "";
     public String startZRate = "";

@@ -2,8 +2,8 @@ package ball.drive.com.nbaball.qdog.bean;
 
 /**
  * Created by aaron on 2018/7/24.
+ * 欧指数据
  */
-
 public class OBean {
     public String company = "";
     public String startS = "";

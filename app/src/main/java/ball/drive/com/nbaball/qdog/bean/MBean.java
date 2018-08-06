@@ -9,8 +9,8 @@ import ball.drive.com.nbaball.qdog.bean.YBean;
 
 /**
  * Created by aaron on 2018/7/24.
+ * 主体比赛数据
  */
-
 public class MBean {
     public String id = "";
     public String liansai = "";
@@ -28,6 +28,8 @@ public class MBean {
     public String bigUrl = "";
     public List<YBean> yList = new ArrayList();
     public List<OBean> oList = new ArrayList();
+    public List<BBean> bList = new ArrayList();
+    public List<FBean> fList = new ArrayList();
     public List<RBean> zList = new ArrayList();
     public List<RBean> kList = new ArrayList();
 
@@ -41,25 +43,32 @@ public class MBean {
         sb.append("亚URL：" + getAsiaUrl() + "\n");
         sb.append("大URL：" + getBigUrl() + "\n");
         sb.append("欧URL：" + getOUrl() + "\n");
+        sb.append("------ 亚盘数据 ------\n");
         for (int i = 0; i < yList.size(); i ++) {
             sb.append(yList.get(i));
         }
+        sb.append("------ 欧指数据 ------\n");
         for (int i = 0; i < oList.size(); i ++) {
             sb.append(oList.get(i));
+        }
+        sb.append("------ 大小数据 ------\n");
+        for (int i = 0; i < bList.size(); i ++) {
+            sb.append(bList.get(i));
+        }
+
+        sb.append("两队比赛历史：\n");
+        for (int i = 0; i < fList.size(); i ++) {
+            sb.append(fList.get(i));
         }
 
         sb.append(getZudui()).append("近期比赛：\n");
         for (int i = 0; i < zList.size(); i ++) {
-            sb.append("结果：" + zList.get(i).getNresult());
-            sb.append(" 让球：" + zList.get(i).getRresult());
-            sb.append(" 大小：" + zList.get(i).getBresult()).append("\n");
+            sb.append(zList.get(i));
         }
 
         sb.append(getKedui()).append("近期比赛：\n");
         for (int i = 0; i < kList.size(); i ++) {
-            sb.append("结果：" + kList.get(i).getNresult());
-            sb.append(" 让球：" + kList.get(i).getRresult());
-            sb.append(" 大小：" + kList.get(i).getBresult()).append("\n");
+            sb.append(kList.get(i));
         }
         return sb.toString();
     }
@@ -193,7 +202,7 @@ public class MBean {
     }
 
     public String getBigUrl() {
-        return "https://www.liaogou168.com" + bigUrl;
+        return bigUrl;
     }
 
     public void setBigUrl(String bigUrl) {
@@ -214,5 +223,21 @@ public class MBean {
 
     public void setkList(List<RBean> kList) {
         this.kList = kList;
+    }
+
+    public List<BBean> getbList() {
+        return bList;
+    }
+
+    public void setbList(List<BBean> bList) {
+        this.bList = bList;
+    }
+
+    public List<FBean> getfList() {
+        return fList;
+    }
+
+    public void setfList(List<FBean> fList) {
+        this.fList = fList;
     }
 }
