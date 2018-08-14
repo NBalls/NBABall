@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:id="@+id/bisai"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/zhudui"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:text="VS"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/kedui"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                ></LinearLayout>
+            <TextView
+                android:id="@+id/yaText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="亚"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/ouText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="欧"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/bigText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="大"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/anaText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="析"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/yLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="亚盘"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:background="#6666AA"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/oLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="欧指"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:background="#6666AA"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="大小"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:background="#6666AA"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="以往比赛"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:background="#6666AA"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

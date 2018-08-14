@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/parse_item_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+        <TextView
+            android:id="@+id/bisai"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:text="亚运男足"
+            />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:text="20:00"
+            />
+
+        <TextView
+            android:id="@+id/zhudiu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:text="卡塔尔U23"
+            android:autoLink="web"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:text="VS"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/kedui"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:text="乌兹别克U23"
+            android:autoLink="web"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+

@@ -12,7 +12,12 @@ fun getYMD(timestamp: Long): String {
 }
 
 fun getYMD(): String {
-    val sdf = SimpleDateFormat("yyyyMMdd")
+    val sdf = SimpleDateFormat("yyyy-MM-dd")
+    return sdf.format(Date(System.currentTimeMillis()))
+}
+
+fun getYMDHMS(): String {
+    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     return sdf.format(Date(System.currentTimeMillis()))
 }
 

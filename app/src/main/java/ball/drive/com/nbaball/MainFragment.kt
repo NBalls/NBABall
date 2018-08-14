@@ -26,9 +26,10 @@ class MainFragment: BaseFragment() {
      * 胜率页面
      * Email页面
      */
+    private lateinit var scheduleFragment: ScheduleFragment
+    private lateinit var parserFragment: ParserFragment
     private lateinit var teamFragment: TeamFragment
     private lateinit var officialFragment: OfficialFragment
-    private lateinit var scheduleFragment: ScheduleFragment
     private lateinit var grabFragment: GrabFragment
     private lateinit var emailFragment: EmailFragment
 
@@ -43,8 +44,13 @@ class MainFragment: BaseFragment() {
         scheduleFragment = createScheduleFragment()
         grabFragment = createGrabFragment()
         emailFragment = createEmailFragment()
-        loadMultipleRootFragment(R.id.mainContainerLayout, 0,
-                scheduleFragment, grabFragment, officialFragment, teamFragment, emailFragment)
+        parserFragment = createParserFragment()
+        loadRootFragment(R.id.mainContainerLayout, /*0,*/
+                parserFragment/*, scheduleFragment, grabFragment, officialFragment, teamFragment, emailFragment*/)
+
+        view?.findViewById<LinearLayout>(R.id.parserLayout)?.onClick {
+            showHideFragment(parserFragment)
+        }
 
         view?.findViewById<LinearLayout>(R.id.officialLayout)?.onClick {
             showHideFragment(officialFragment)

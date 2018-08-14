@@ -1,13 +1,15 @@
 package ball.drive.com.nbaball.qdog;
 
+import android.text.TextUtils;
+import android.util.Log;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import ball.drive.com.nbaball.OnParseListener;
 import ball.drive.com.nbaball.qdog.bean.BBean;
 import ball.drive.com.nbaball.qdog.bean.FBean;
 import ball.drive.com.nbaball.qdog.bean.MBean;
@@ -22,50 +24,63 @@ import ball.drive.com.nbaball.qdog.util.ParserUtil;
  */
 public class ParseData {
 
-    public static final String NET_URL = "https://www.liaogou168.com/match/immediate.html";
-    public static final String CLASS_TABLE = "contentTable";
-    public static final String TAB_TBODY = "tbody";
-    public static final List<MBean> mainList = new ArrayList();
+    private static final String NET_URL = "https://www.liaogou168.com/match/immediate.html";
+    private static final String CLASS_TABLE = "contentTable";
+    private static final String TAB_TBODY = "tbody";
+    private static final String TAG = "ParserFragment";
+    private static final List<MBean> mainList = new ArrayList();
+    public static OnParseListener onParseListener = null;
 
-    public static void parseMainData() throws Exception {
+    public static List<MBean> parseMainData() throws Exception {
         Document doc = Jsoup.connect(NET_URL).get();
         Elements tableElement = doc.getElementsByClass(CLASS_TABLE);
         if (tableElement == null || tableElement.size() <= 0) {
-            return;
+            return mainList;
         }
         Element tabElement = tableElement.get(0);
         Elements tbodyElement = tabElement.getElementsByTag(TAB_TBODY);
         if (tbodyElement == null || tbodyElement.size() <= 0) {
-            return;
+            return mainList;
         }
         Element bodyElement = tbodyElement.get(0);
         Elements trElement = bodyElement.children();
         for (int i = 0; i < trElement.size(); i++) {
             MBean mBean = new MBean();
             Element element = trElement.get(i);
-            mBean.setId(element.attr("match"));
-            mBean.setLiansai(element.child(1).child(0).text().trim());
-            mBean.setTime(element.child(2).text().trim());
-            mBean.setStatus(element.child(3).text().trim());
-            mBean.setZudui(element.child(4).child(0).text().trim());
-            mBean.setZhuUrl(element.child(4).child(0).attr("href"));
-            mBean.setKeUrl(element.child(6).child(0).attr("href"));
-            String points = element.child(5).child(0).child(0).text().trim();
-            if (points.indexOf("-") >= 0 && points.indexOf("-") < points.length()) {
-                mBean.setZhuPoint(points.substring(0, points.indexOf("-")));
-                mBean.setKedui(points.substring(points.indexOf("-") + 1));
+            if (!element.child(9).child(0).text().trim().equals("---")
+                    && TextUtils.isEmpty(element.child(3).text().trim())) {
+                Log.i(TAG, "###### 开始解析第 " + (i + 1) + " 条数据......");
+                if (onParseListener != null) {
+                    onParseListener.onParseRate((i + i), true);
+                }
+                mBean.setId(element.attr("match"));
+                mBean.setLiansai(element.child(1).child(0).text().trim());
+                mBean.setTime(element.child(2).text().trim().substring(0, 5));
+                mBean.setStatus(element.child(3).text().trim());
+                mBean.setZudui(element.child(4).child(0).text().trim());
+                mBean.setZhuUrl(element.child(4).child(0).attr("href"));
+                mBean.setKeUrl(element.child(6).child(0).attr("href"));
+                String points = element.child(5).child(0).child(0).text().trim();
+                if (points.indexOf("-") >= 0 && points.indexOf("-") < points.length()) {
+                    mBean.setZhuPoint(points.substring(0, points.indexOf("-")));
+                    mBean.setKedui(points.substring(points.indexOf("-") + 1));
+                }
+                mBean.setKedui(element.child(6).child(0).text().trim());
+                mBean.setAnalyseUrl(element.child(10).child(0).attr("href"));
+                mBean.setAsiaUrl(element.child(10).child(1).attr("href"));
+                mBean.setBigUrl(element.child(10).child(2).attr("href"));
+                mBean.setOuUrl(element.child(10).child(3).attr("href"));
+                parseYData(mBean);
+            } else {
+                if (onParseListener != null) {
+                    onParseListener.onParseRate((i + i), false);
+                }
+                Log.i(TAG, "###### " + (i + 1) + " 条数据为无效数据不在解析......");
             }
-            mBean.setKedui(element.child(6).child(0).text().trim());
-            mBean.setAnalyseUrl(element.child(10).child(0).attr("href"));
-            mBean.setAsiaUrl(element.child(10).child(1).attr("href"));
-            mBean.setBigUrl(element.child(10).child(2).attr("href"));
-            mBean.setOuUrl(element.child(10).child(3).attr("href"));
 
-            // System.out.println(mBean);
-            parseYData(mBean);
         }
 
-        printTitle(mainList);
+        return mainList;
     }
 
     // 解析亚盘
@@ -94,7 +109,6 @@ public class ParseData {
         }
         mBean.setyList(yList);
         parseOData(mBean);
-        // System.out.println(mBean);
     }
 
     // 解析欧盘
@@ -119,15 +133,22 @@ public class ParseData {
             oBean.setEndS(trElement.get(i).child(4).text().trim());
             oBean.setEndP(trElement.get(i).child(5).text().trim());
             oBean.setEndF(trElement.get(i).child(6).text().trim());
+            if (TextUtils.isEmpty(oBean.getStartS())
+                    || TextUtils.isEmpty(oBean.getStartP())
+                    || TextUtils.isEmpty(oBean.getStartF())
+                    || TextUtils.isEmpty(oBean.getEndS())
+                    || TextUtils.isEmpty(oBean.getEndP())
+                    || TextUtils.isEmpty(oBean.getEndF())) {
+                continue;
+            }
             oList.add(oBean);
         }
-        // System.out.println(mBean);
         mBean.setoList(oList);
         parserBData(mBean);
     }
 
     // 解析大小
-    public static void parserBData(MBean mBean) throws Exception {
+    private static void parserBData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getBigUrl()).get();
         Element divElement = doc.getElementById("Odd");
         Elements bodyElement = divElement.getElementsByTag("tbody");
@@ -150,14 +171,12 @@ public class ParseData {
             bBean.setEndS(trElement.get(i).child(6).text().trim());
             bList.add(bBean);
         }
-        // System.out.println(mBean);
         mBean.setbList(bList);
         parserFData(mBean);
     }
 
     // 解析以往比赛
-    public static void parserFData(MBean mBean) throws Exception {
-        System.out.println(mBean.getAnalyseUrl());
+    private static void parserFData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getAnalyseUrl()).get();
         Element divElement = doc.getElementById("Data_Battle");
         if (divElement == null) {
@@ -192,13 +211,12 @@ public class ParseData {
             fBean.setBresult(trElement.get(i).child(16).text().trim());
             fList.add(fBean);
         }
-        // System.out.println(mBean);
         mBean.setfList(fList);
         parserRData(mBean);
     }
 
     // 解析近期比赛
-    public static void parserRData(MBean mBean) throws Exception {
+    private static void parserRData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getAnalyseUrl()).get();
         Element divElement = doc.getElementById("Data_History");
         if (divElement == null) {
@@ -232,36 +250,14 @@ public class ParseData {
             mBean.setkList(kList);
         }
         mainList.add(mBean);
-        //System.out.println(mBean);
-    }
-
-    public static void printTitle(List<MBean> mainList) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("今日共有比赛：" + mainList.size() + "场");
-        int completeCount = 0;
-        int nostartCount = 0;
-        int playingCount = 0;
-        for (int i = 0; i < mainList.size(); i ++) {
-            if (mainList.get(i).getStatus().equals("已结束")) {
-                completeCount = completeCount + 1;
-            } else if (mainList.get(i).getStatus().equals("")) {
-                nostartCount = nostartCount + 1;
-            } else {
-                playingCount = playingCount + 1;
-            }
-        }
-        sb.append("已开始：" + playingCount + "场，未开始：" + nostartCount + "场，已结束：" + completeCount);
-        System.out.println(sb.toString());
-
-        print144(mainList);
     }
 
     /**
      * 解析1.44比赛
      * @param mainList
      */
-    public static void print144(List<MBean> mainList) {
-        ParserUtil.printSplit("解析1.44比赛");
+    public static List<MBean> print144(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
         for (int i = 0; i < mainList.size(); i ++) {
             int count = 0;
             for (int j = 0; j < mainList.get(i).getoList().size(); j ++) {
@@ -272,52 +268,50 @@ public class ParseData {
             }
 
             if (count >= 2) {
-                System.out.println(mainList.get(i));
+                mList.add(mainList.get(i));
             }
         }
-        ParserUtil.printSplit("解析1.44比赛");
 
-        printDown(mainList);
+        return mList;
     }
 
     /**
      * 解析下盘低水比赛
      * @param mainList
      */
-    public static void printDown(List<MBean> mainList) {
-        ParserUtil.printSplit("解析下盘低水比赛");
+    public static List<MBean> printDown(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
         for (int i = 0; i < mainList.size(); i ++) {
             int count = 0;
             for (int j = 0; j < mainList.get(i).getyList().size(); j ++) {
                 if (Float.valueOf(mainList.get(i).getyList().get(j).endPan) > 0 &&
                         Float.valueOf(mainList.get(i).getyList().get(j).endPan) < 1 &&
-                        Float.valueOf(mainList.get(i).getyList().get(j).getStartKRate()) -
-                                Float.valueOf(mainList.get(i).getyList().get(j).getEndKRate()) > 0) {
+                        Float.valueOf(mainList.get(i).getyList().get(j).getEndKRate()) -
+                                Float.valueOf(mainList.get(i).getyList().get(j).getStartKRate()) < 0) {
                     count = count + 1;
                 }
                 if (Float.valueOf(mainList.get(i).getyList().get(j).endPan) < 0 &&
                         Float.valueOf(mainList.get(i).getyList().get(j).endPan) > -1 &&
                         Float.valueOf(mainList.get(i).getyList().get(j).getEndZRate()) -
-                                Float.valueOf(mainList.get(i).getyList().get(j).getStartZRate()) > 0) {
+                                Float.valueOf(mainList.get(i).getyList().get(j).getStartZRate()) < 0) {
                     count = count + 1;
                 }
             }
 
             if (count >= mainList.get(i).getyList().size()) {
-                System.out.println(mainList.get(i));
+                mList.add(mainList.get(i));
             }
         }
-        ParserUtil.printSplit("解析下盘低水比赛");
 
-        print275(mainList);
+        return mList;
     }
 
     /**
      * 解析大2.75比赛
      * @param mainList
      */
-    public static void print275(List<MBean> mainList) {
-        ParserUtil.printSplit("解析大2.75比赛");
+    public static List<MBean> print275(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
         for (int i = 0; i < mainList.size(); i ++) {
             int count = 0;
             for (int j = 0; j < mainList.get(i).getbList().size(); j ++) {
@@ -329,20 +323,19 @@ public class ParseData {
             }
 
             if (count >= mainList.get(i).getbList().size()) {
-                System.out.println(mainList.get(i));
+                mList.add(mainList.get(i));
             }
         }
-        ParserUtil.printSplit("解析大2.75比赛");
 
-        print075(mainList);
+        return mList;
     }
 
     /**
      * 解析半一盘比赛
      * @param mainList
      */
-    public static void print075(List<MBean> mainList) {
-        ParserUtil.printSplit("解析半一盘比赛");
+    public static List<MBean> print075(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
         for (int i = 0; i < mainList.size(); i ++) {
             int count = 0;
             for (int j = 0; j < mainList.get(i).getyList().size(); j ++) {
@@ -359,20 +352,19 @@ public class ParseData {
             }
 
             if (count >= mainList.get(i).getyList().size()) {
-                System.out.println(mainList.get(i));
+                mList.add(mainList.get(i));
             }
         }
-        ParserUtil.printSplit("解析半一盘比赛");
 
-        print2Over(mainList);
+        return mList;
     }
 
     /**
      * 解析连续变盘2个盘口以上比赛
      * @param mainList
      */
-    public static void print2Over(List<MBean> mainList) {
-        ParserUtil.printSplit("解析连续变盘两个盘口以上比赛");
+    public static List<MBean> print2Over(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
         for (int i = 0; i < mainList.size(); i ++) {
             int count = 0;
             for (int j = 0; j < mainList.get(i).getyList().size(); j ++) {
@@ -384,21 +376,20 @@ public class ParseData {
                 }
             }
 
-            if (count >= mainList.get(i).getyList().size()) {
-                System.out.println(mainList.get(i));
+            if (count >= mainList.get(i).getyList().size() - 1) {
+                mList.add(mainList.get(i));
             }
         }
-        ParserUtil.printSplit("解析连续变盘两个盘口以上比赛");
 
-        printCOver(mainList);
+        return mList;
     }
 
     /**
      * 解析与近期比赛让球盘变化较大比赛
      * @param mainList
      */
-    public static void printCOver(List<MBean> mainList) {
-        ParserUtil.printSplit("解析与以往比赛相比让球盘口变化过大比赛");
+    public static List<MBean> printCOver(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
         for (int i = 0; i < mainList.size(); i ++) {
             int count = 0;
             if (mainList.get(i).getfList().size() > 0 &&
@@ -416,12 +407,10 @@ public class ParseData {
             }
 
             if (count >= 1) {
-                System.out.println(mainList.get(i));
+                mList.add(mainList.get(i));
             }
         }
-        ParserUtil.printSplit("解析与以往比赛相比让球盘口变化过大比赛");
-
-        // printAll(mainList);
+        return mList;
     }
 
     // 解析大小盘口近期比赛变化较大的比赛
