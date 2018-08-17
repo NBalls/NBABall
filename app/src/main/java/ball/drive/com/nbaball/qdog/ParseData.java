@@ -8,7 +8,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
-
 import ball.drive.com.nbaball.OnParseListener;
 import ball.drive.com.nbaball.qdog.bean.BBean;
 import ball.drive.com.nbaball.qdog.bean.FBean;
@@ -31,7 +30,11 @@ public class ParseData {
     private static final List<MBean> mainList = new ArrayList();
     public static OnParseListener onParseListener = null;
 
-    public static List<MBean> parseMainData() throws Exception {
+    /**
+     * 解析比赛数据--主要解析当前尚未开赛的比赛
+     * 若比赛数量较大则最多解析400场比赛
+     */
+    public static List<MBean> parseMainData(int parseCount) throws Exception {
         Document doc = Jsoup.connect(NET_URL).get();
         Elements tableElement = doc.getElementsByClass(CLASS_TABLE);
         if (tableElement == null || tableElement.size() <= 0) {
@@ -44,7 +47,9 @@ public class ParseData {
         }
         Element bodyElement = tbodyElement.get(0);
         Elements trElement = bodyElement.children();
-        for (int i = 0; i < trElement.size(); i++) {
+        mainList.clear();
+        // 若总数据大于300条，则先解析300条，否则内存会被打满
+        for (int i = 0; i < Math.min(trElement.size(), parseCount); i++) {
             MBean mBean = new MBean();
             Element element = trElement.get(i);
             if (!element.child(9).child(0).text().trim().equals("---")
@@ -83,11 +88,13 @@ public class ParseData {
         return mainList;
     }
 
-    // 解析亚盘
+    /**
+     * 解析亚盘盘口数需要大于等于3
+     */
     private static void parseYData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getYUrl()).get();
         Element divElement = doc.getElementById("Odd");
-        Elements bodyElement = divElement.getElementsByTag("tbody");
+        Elements bodyElement = divElement.getElementsByTag(TAB_TBODY);
         if (bodyElement.size() <= 0) {
             return;
         }
@@ -107,11 +114,18 @@ public class ParseData {
             yBean.setEndKRate(trElement.get(i).child(6).text().trim());
             yList.add(yBean);
         }
-        mBean.setyList(yList);
-        parseOData(mBean);
+
+        if (yList.size() >= 3) {
+            mBean.setyList(yList);
+            parseOData(mBean);
+        } else {
+            Log.i(TAG, "###### 比赛亚盘数量小于3，放弃该比赛........");
+        }
     }
 
-    // 解析欧盘
+    /**
+     * 解析欧盘盘口数需要大于等于3
+     */
     private static void parseOData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getOUrl()).get();
         Element divElement = doc.getElementById("Odd");
@@ -143,11 +157,18 @@ public class ParseData {
             }
             oList.add(oBean);
         }
-        mBean.setoList(oList);
-        parserBData(mBean);
+
+        if (oList.size() >= 3) {
+            mBean.setoList(oList);
+            parserBData(mBean);
+        } else {
+            Log.i(TAG, "###### 比赛欧盘数量小于3，放弃该比赛........");
+        }
     }
 
-    // 解析大小
+    /**
+     * 解析大小(盘口数需要大于等于3)
+     */
     private static void parserBData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getBigUrl()).get();
         Element divElement = doc.getElementById("Odd");
@@ -171,13 +192,32 @@ public class ParseData {
             bBean.setEndS(trElement.get(i).child(6).text().trim());
             bList.add(bBean);
         }
-        mBean.setbList(bList);
-        parserFData(mBean);
+
+        if (bList.size() >= 3) {
+            mBean.setbList(bList);
+            parserFData(mBean);
+        } else {
+            Log.i(TAG, "###### 比赛大小盘数量小于3，放弃该比赛........");
+        }
     }
 
-    // 解析以往比赛
+    /**
+     * 解析以往比赛至少需要对往2次比赛
+     */
     private static void parserFData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getAnalyseUrl()).get();
+
+        Element teamElement = doc.getElementById("Content");
+        String homeTeam = teamElement.child(1).child(1).child(1).child(1).text().trim();
+        String awayTeam = teamElement.child(1).child(3).child(1).child(1).text().trim();
+        if (!TextUtils.isEmpty(homeTeam) && homeTeam.contains("【") && homeTeam.contains("】")) {
+            String homeTeamStr = homeTeam.substring(homeTeam.indexOf("【") + 1, homeTeam.indexOf("】"));
+            mBean.setZhuRank(homeTeamStr);
+        }
+        if (!TextUtils.isEmpty(awayTeam) && awayTeam.contains("【") && awayTeam.contains("】")) {
+            String awayTeamStr = awayTeam.substring(awayTeam.indexOf("【") + 1, awayTeam.indexOf("】"));
+            mBean.setKeRank(awayTeamStr);
+        }
         Element divElement = doc.getElementById("Data_Battle");
         if (divElement == null) {
             return;
@@ -200,22 +240,41 @@ public class ParseData {
             fBean.setOs(trElement.get(i).child(5).text().trim());
             fBean.setOp(trElement.get(i).child(6).text().trim());
             fBean.setOf(trElement.get(i).child(7).text().trim());
-            fBean.setYs(trElement.get(i).child(8).text().trim());
-            fBean.setYp(ParserUtil.changePan(trElement.get(i).child(9).text().trim()));
-            fBean.setYf(trElement.get(i).child(10).text().trim());
-            fBean.setBb(trElement.get(i).child(11).text().trim());
-            fBean.setBp(trElement.get(i).child(12).text().trim());
-            fBean.setBs(trElement.get(i).child(13).text().trim());
-            fBean.setNresult(trElement.get(i).child(14).text().trim());
-            fBean.setYresult(trElement.get(i).child(15).text().trim());
-            fBean.setBresult(trElement.get(i).child(16).text().trim());
+            fBean.setOs2(trElement.get(i).child(8).text().trim());
+            fBean.setOp2(trElement.get(i).child(9).text().trim());
+            fBean.setOf2(trElement.get(i).child(10).text().trim());
+
+            fBean.setYs(trElement.get(i).child(11).text().trim());
+            fBean.setYp(ParserUtil.changePan(trElement.get(i).child(12).text().trim()));
+            fBean.setYf(trElement.get(i).child(13).text().trim());
+            fBean.setYs2(trElement.get(i).child(14).text().trim());
+            fBean.setYp2(ParserUtil.changePan(trElement.get(i).child(15).text().trim()));
+            fBean.setYf2(trElement.get(i).child(16).text().trim());
+
+            fBean.setBb(trElement.get(i).child(17).text().trim());
+            fBean.setBp(trElement.get(i).child(18).text().trim());
+            fBean.setBs(trElement.get(i).child(19).text().trim());
+            fBean.setBb2(trElement.get(i).child(20).text().trim());
+            fBean.setBp2(trElement.get(i).child(21).text().trim());
+            fBean.setBs2(trElement.get(i).child(22).text().trim());
+
+            fBean.setNresult(trElement.get(i).child(23).text().trim());
+            fBean.setYresult(trElement.get(i).child(24).text().trim());
+            fBean.setBresult(trElement.get(i).child(25).text().trim());
             fList.add(fBean);
         }
-        mBean.setfList(fList);
-        parserRData(mBean);
+        // 对往比赛--一年内比过1次，两年内比过2次
+        if (fList.size() >= 2) {
+            mBean.setfList(fList);
+            parserRData(mBean);
+        } else {
+            Log.i(TAG, "###### 对往比赛小于2次........");
+        }
     }
 
-    // 解析近期比赛
+    /**
+     * 解析近期比赛
+     */
     private static void parserRData(MBean mBean) throws Exception {
         Document doc = Jsoup.connect(mBean.getAnalyseUrl()).get();
         Element divElement = doc.getElementById("Data_History");
@@ -226,7 +285,7 @@ public class ParseData {
             Element bodyElement = divElement.child(1).child(1).child(2).child(1);
             Elements elements = bodyElement.children();
             List<RBean> zList = new ArrayList();
-            for (int i = 0; i < elements.size(); i ++) {
+            for (int i = 0; i < Math.min(elements.size(), 5); i ++) {
                 RBean rBean = new RBean();
                 rBean.setNresult(elements.get(i).child(23).text().trim());
                 rBean.setRresult(elements.get(i).child(24).text().trim());
@@ -240,7 +299,7 @@ public class ParseData {
             Element bodyElement1 = divElement.child(2).child(1).child(2).child(1);
             Elements elements1 = bodyElement1.children();
             List<RBean> kList = new ArrayList();
-            for (int i = 0; i < elements1.size(); i ++) {
+            for (int i = 0; i < Math.min(elements1.size(), 5); i ++) {
                 RBean rBean = new RBean();
                 rBean.setNresult(elements1.get(i).child(23).text().trim());
                 rBean.setRresult(elements1.get(i).child(24).text().trim());
@@ -289,8 +348,7 @@ public class ParseData {
                         Float.valueOf(mainList.get(i).getyList().get(j).getEndKRate()) -
                                 Float.valueOf(mainList.get(i).getyList().get(j).getStartKRate()) < 0) {
                     count = count + 1;
-                }
-                if (Float.valueOf(mainList.get(i).getyList().get(j).endPan) < 0 &&
+                } else if (Float.valueOf(mainList.get(i).getyList().get(j).endPan) < 0 &&
                         Float.valueOf(mainList.get(i).getyList().get(j).endPan) > -1 &&
                         Float.valueOf(mainList.get(i).getyList().get(j).getEndZRate()) -
                                 Float.valueOf(mainList.get(i).getyList().get(j).getStartZRate()) < 0) {
@@ -380,7 +438,6 @@ public class ParseData {
                 mList.add(mainList.get(i));
             }
         }
-
         return mList;
     }
 
@@ -392,8 +449,7 @@ public class ParseData {
         List<MBean> mList = new ArrayList();
         for (int i = 0; i < mainList.size(); i ++) {
             int count = 0;
-            if (mainList.get(i).getfList().size() > 0 &&
-                    mainList.get(i).getyList().size() > 0 &&
+            if (mainList.get(i).getfList().size() > 0 && mainList.get(i).getyList().size() > 0 &&
                     ParserUtil.isNearDate(mainList.get(i).getfList().get(0).getDate())) {
                 if (mainList.get(i).getZudui().equals(mainList.get(i).getfList().get(0).getZhudui())) {
                     if (Float.valueOf(mainList.get(i).getyList().get(0).getEndPan()) -
@@ -412,6 +468,57 @@ public class ParseData {
         }
         return mList;
     }
+
+    /**
+     * 解析一直是平手盘比赛
+     * @param mainList
+     */
+    public static List<MBean> printZero(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
+        for (int i = 0; i < mainList.size(); i ++) {
+            int count = 0;
+            if (mainList.get(i).getyList().size() > 0) {
+                for (int j = 0; j < mainList.get(i).getyList().size(); j ++) {
+                    if (mainList.get(i).getyList().get(j).getStartPan().equals("0.0")
+                            && mainList.get(i).getyList().get(j).getEndPan().equals("0.0")) {
+                        count = count + 1;
+                    }
+                }
+            }
+
+            if (count >= mainList.size() / 2) {
+                mList.add(mainList.get(i));
+            }
+        }
+        return mList;
+    }
+
+    /**
+     * 解析半球盘将至请半盘
+     * @param mainList
+     */
+    public static List<MBean> printBan(List<MBean> mainList) {
+        List<MBean> mList = new ArrayList();
+        for (int i = 0; i < mainList.size(); i ++) {
+            int count = 0;
+            if (mainList.get(i).getyList().size() > 0) {
+                for (int j = 0; j < mainList.get(i).getyList().size(); j ++) {
+                    if (mainList.get(i).getyList().get(j).getStartPan() == "0.25"
+                            && mainList.get(i).getyList().get(j).getEndPan() == "0.5") {
+                        count = count + 1;
+                    }
+                }
+            }
+
+            if (count >= mainList.size() / 2) {
+                mList.add(mainList.get(i));
+            }
+        }
+        return mList;
+    }
+
+    // TODO 升盘降水比赛
+    // TODO 降盘升水比赛
 
     // 解析大小盘口近期比赛变化较大的比赛
     public static void printAll(List<MBean> mainList) {

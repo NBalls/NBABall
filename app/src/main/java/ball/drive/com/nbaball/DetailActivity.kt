@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -48,6 +50,9 @@ class DetailActivity : SupportActivity() {
         }
         this.findViewById<TextView>(R.id.anaText).onClick {
             startWebActivity(this, mBean.analyseUrl)
+        }
+        this.findViewById<TextView>(R.id.doText).onClick {
+            parseMatch(mBean)
         }
         // 亚盘
         for (i in 0 until mBean.yList.size) {
@@ -206,5 +211,127 @@ class DetailActivity : SupportActivity() {
             }*/
             findViewById<LinearLayout>(R.id.fLayout).addView(rootViews)
         }
+    }
+
+    /**
+     * 解析
+     */
+    private fun parseMatch(mBean: MBean) {
+        val sb = StringBuffer()
+        if (TextUtils.isEmpty(mBean.zhuRank) || TextUtils.isEmpty(mBean.keRank)) {
+            return
+        }
+        val zhuRank = mBean.zhuRank.substring(mBean.zhuRank.length - 1).toInt()
+        val keRank = mBean.keRank.substring(mBean.keRank.length - 1).toInt()
+
+        // title说明
+        sb.append("诸葛神盘--你博彩征途中的军师\n")
+        val tempTime = System.currentTimeMillis()
+        // 排名说明
+        if (tempTime % 3 <= 10L) {
+            sb.append("今天诸葛重点关注")
+                    .append(mBean.zhuRank)
+                    .append("的")
+                    .append(mBean.zudui)
+                    .append("主场迎战")
+                    .append(mBean.keRank)
+                    .append("的")
+                    .append(mBean.kedui)
+                    .append("\n")
+        } else if (tempTime % 3 == 1L) {
+            sb.append("今天")
+                    .append(mBean.zhuRank)
+                    .append("的")
+                    .append(mBean.zudui)
+                    .append("主场对战")
+                    .append(mBean.keRank)
+                    .append("的")
+                    .append(mBean.kedui)
+                    .append("战果会如何？且听诸葛慢慢道来")
+                    .append("\n")
+        } else if (tempTime % 3 == 2L) {
+            sb.append("今天")
+                    .append(mBean.zhuRank)
+                    .append("的")
+                    .append(mBean.zudui)
+                    .append("将会在主场迎战")
+                    .append(mBean.keRank)
+                    .append("的")
+                    .append(mBean.kedui)
+                    .append("具体情况如何？")
+                    .append("\n")
+        }
+        val tempTime1 = System.currentTimeMillis()
+        if (tempTime1 % 3 <= 10L) {
+            sb.append("从排名上看主队")
+                    .append(mBean.zudui)
+                    .append("排名第")
+                    .append(mBean.zhuRank.substring(mBean.zhuRank.length - 1))
+                    .append("而客队")
+                    .append(mBean.kedui)
+                    .append("排名第")
+                    .append(mBean.keRank.substring(mBean.keRank.length - 1)).append(",")
+            if (Math.abs(zhuRank - keRank) < 5) {
+                sb.append("两队排名相对靠近")
+            } else {
+                sb.append("两队排名差距较大")
+            }
+            sb.append("而主场作战的")
+                    .append(mBean.zudui)
+                    .append("无疑对比")
+                    .append(mBean.kedui)
+                    .append("更新要一场胜利来提振一下球队士气\n")
+        }
+
+        // 历史对战说明
+        var winCount = 0
+        var failCount = 0
+        var withCount = 0
+        for (i in 0 until Math.min(mBean.getfList().size, 5)) {
+            if (mBean.getfList()[i].nresult == "胜") {
+                winCount += 1
+            } else if (mBean.getfList()[i].nresult == "平") {
+                withCount += 1
+            } else {
+                failCount += 1
+            }
+        }
+        sb.append("两队交锋历史上，近")
+                .append(Math.min(mBean.getfList().size, 5))
+                .append("比赛主队")
+                .append(mBean.getZudui())
+                .append("录得")
+                .append(winCount).append("胜")
+                .append(withCount).append("平")
+                .append(failCount).append("负")
+                .append("的战绩。")
+        if (winCount > failCount) {
+            sb.append("主队占据一定的优势")
+        } else if (winCount < failCount) {
+            sb.append("客队占据一定的优势")
+        } else {
+            sb.append("两队历史对战战果平分秋色")
+        }
+
+
+        // 近期战况说明
+        val winCount1 = 0
+        val failCount1 = 0
+        val withCount1 = 0
+        for (i in 0 until Math.min(mBean.getzList().size, 5)) {
+
+        }
+                "从排名上看蒙彼利埃无意更具有优势但是两队都是10名以外的球队排名更只是具有象征性的意义，参考性不大。" +
+                        "而在第一轮法甲比赛中亚眠与蒙彼利埃都是首站告负本场比赛而言两队战意都比较足，但是相对于客场作战的蒙彼利埃而言。" +
+                        "主场作战的亚眠无疑更需要一场胜利来振奋一下球队。\n" +
+                "\n" +
+                "两队交锋史上基本可以说是平分秋色尤其是近两场次交锋录得三场平局，近两年两队更是只有两次交锋且都是以平局收尾。\n" +
+                "\n" +
+                "近期比赛中亚眠近5场比赛1胜1平3负尤其是近3场1平2负可谓状态较为低迷，而蒙彼利埃近5场比赛2胜2平1负状态一般近3场比赛1胜1平1负相对而言交亚眠无疑根据优势。\n" +
+                "\n" +
+                "亚盘初盘以亚眠让平半盘中低水开出相对而言对亚眠的支持力度较大，但是后市收注之后主队水位持续上升客队水位持续下降说明客队热度不减，" +
+                        "欧指方面平负指数同时调低说明机构对客队至少不败抱有信心，综上所述本场比赛更应该支持蒙彼利埃不败。"
+
+        Log.i("DetailActivity", "#########" + sb.toString())
     }
 }

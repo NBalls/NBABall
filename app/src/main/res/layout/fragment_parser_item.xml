@@ -21,6 +21,17 @@
         >
 
         <TextView
+            android:id="@+id/number"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:text="001"
+            />
+
+        <TextView
             android:id="@+id/bisai"
             android:layout_width="0dp"
             android:layout_height="match_parent"

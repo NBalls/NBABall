@@ -20,7 +20,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:gravity="center"
                 >
                 <TextView
@@ -35,16 +35,37 @@
                     android:text="今天共有比赛：0场"
                     />
 
-                <Button
-                    android:id="@+id/freshButton"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="刷新数据"
-                    android:textSize="13sp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@android:color/black"
-                    />
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/black"
+                        android:text="解析个数"
+                        android:layout_marginLeft="5dp"
+                        />
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        ></Spinner>
+                    <Button
+                        android:id="@+id/freshButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="刷新数据"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <TextView
                 android:id="@+id/parseStatus"
@@ -74,46 +95,6 @@
                 android:paddingBottom="10dp"
                 android:textColor="@android:color/black"
                 android:text="下盘低水"
-                android:background="#446688"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bigLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/bigTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="18sp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@android:color/black"
-                android:text="大2.75"
-                android:background="#446688"
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/banLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/banTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="18sp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@android:color/black"
-                android:text="半一盘"
                 android:background="#446688"
                 />
         </LinearLayout>
@@ -159,6 +140,46 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/zeroLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/zeroTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"
+                android:text="持续平手盘"
+                android:background="#446688"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pbLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/pbTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"
+                android:text="半球降平半盘"
+                android:background="#446688"
+                />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/oneLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -174,6 +195,66 @@
                 android:paddingBottom="10dp"
                 android:textColor="@android:color/black"
                 android:text="144比赛"
+                android:background="#446688"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bigLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/bigTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"
+                android:text="大2.75"
+                android:background="#446688"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/banLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/banTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"
+                android:text="半一盘"
+                android:background="#446688"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/allLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/allTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@android:color/black"
+                android:text="全部有效比赛"
                 android:background="#446688"
                 />
         </LinearLayout>

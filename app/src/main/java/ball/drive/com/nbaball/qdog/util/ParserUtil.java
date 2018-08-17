@@ -78,7 +78,7 @@ public class ParserUtil {
             SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
             Date date1 = sdf.parse(strDate);
             Date date2 = Calendar.getInstance().getTime();
-            if (date2.getTime() - date1.getTime() <= 100 * 24 * 60 * 60 * 1000) {
+            if (date2.getTime() - date1.getTime() <= 365 * 24 * 60 * 60 * 1000) {
                 return true;
             }
         } catch (Exception e) {

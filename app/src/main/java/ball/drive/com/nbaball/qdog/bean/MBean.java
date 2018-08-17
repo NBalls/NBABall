@@ -26,12 +26,14 @@ public class MBean {
     public String asiaUrl = "";
     public String ouUrl = "";
     public String bigUrl = "";
-    public List<YBean> yList = new ArrayList();
-    public List<OBean> oList = new ArrayList();
-    public List<BBean> bList = new ArrayList();
-    public List<FBean> fList = new ArrayList();
-    public List<RBean> zList = new ArrayList();
-    public List<RBean> kList = new ArrayList();
+    public String zhuRank = "";
+    public String keRank = "";
+    public List<YBean> yList = new ArrayList();// 亚盘数据
+    public List<OBean> oList = new ArrayList();// 欧指数据
+    public List<BBean> bList = new ArrayList();// 大小数据
+    public List<FBean> fList = new ArrayList();// 对往战绩
+    public List<RBean> zList = new ArrayList();// 主队近期战绩
+    public List<RBean> kList = new ArrayList();// 客队近期战绩
 
     @Override
     public String toString() {
@@ -239,5 +241,21 @@ public class MBean {
 
     public void setfList(List<FBean> fList) {
         this.fList = fList;
+    }
+
+    public String getZhuRank() {
+        return zhuRank;
+    }
+
+    public void setZhuRank(String zhuRank) {
+        this.zhuRank = zhuRank;
+    }
+
+    public String getKeRank() {
+        return keRank;
+    }
+
+    public void setKeRank(String keRank) {
+        this.keRank = keRank;
     }
 }

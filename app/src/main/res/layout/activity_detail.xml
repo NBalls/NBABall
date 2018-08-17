@@ -77,8 +77,18 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 ></LinearLayout>
+            <TextView
+                android:id="@+id/doText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Done"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                />
             <TextView
                 android:id="@+id/yaText"
                 android:layout_width="0dp"

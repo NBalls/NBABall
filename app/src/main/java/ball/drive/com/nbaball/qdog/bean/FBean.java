@@ -14,12 +14,21 @@ public class FBean {
     public String os = "";
     public String op = "";
     public String of = "";
+    public String os2 = "";
+    public String op2 = "";
+    public String of2 = "";
     public String ys = "";
     public String yp = "";
     public String yf = "";
+    public String ys2 = "";
+    public String yp2 = "";
+    public String yf2 = "";
     public String bb = "";
     public String bp = "";
     public String bs = "";
+    public String bb2 = "";
+    public String bp2 = "";
+    public String bs2 = "";
     public String nresult = "";
     public String yresult = "";
     public String bresult = "";
@@ -28,8 +37,9 @@ public class FBean {
     @Override
     public String toString() {
         return company + " " + date + " " + zhudui + " " + zhuPoint + ":" + kePoint + " " + kedui +
-                " " + os + " " + op + " " + of + " " + ys + " " + yp + " " + yf + " " + bb + " " + bp +
-                " " + bs + " " + nresult + " " + yresult + " " + bresult;
+                " " + os + " " + op + " " + of + " " + os2 + " " + op2 + " " + of2 + " " + ys + " "
+                + yp + " " + yf + " " + ys2 + " " + yp2 + " " + yf2 + " " + bb + " " + bp + " " + bs
+                + " " + bb2 + " " + bp2 + " " + bs2 + " " + nresult + " " + yresult + " " + bresult;
     }
 
     public String getCompany() {
@@ -174,5 +184,77 @@ public class FBean {
 
     public void setBresult(String bresult) {
         this.bresult = bresult;
+    }
+
+    public String getOs2() {
+        return os2;
+    }
+
+    public void setOs2(String os2) {
+        this.os2 = os2;
+    }
+
+    public String getOp2() {
+        return op2;
+    }
+
+    public void setOp2(String op2) {
+        this.op2 = op2;
+    }
+
+    public String getYs2() {
+        return ys2;
+    }
+
+    public void setYs2(String ys2) {
+        this.ys2 = ys2;
+    }
+
+    public String getYp2() {
+        return yp2;
+    }
+
+    public void setYp2(String yp2) {
+        this.yp2 = yp2;
+    }
+
+    public String getYf2() {
+        return yf2;
+    }
+
+    public void setYf2(String yf2) {
+        this.yf2 = yf2;
+    }
+
+    public String getBb2() {
+        return bb2;
+    }
+
+    public void setBb2(String bb2) {
+        this.bb2 = bb2;
+    }
+
+    public String getBp2() {
+        return bp2;
+    }
+
+    public void setBp2(String bp2) {
+        this.bp2 = bp2;
+    }
+
+    public String getBs2() {
+        return bs2;
+    }
+
+    public void setBs2(String bs2) {
+        this.bs2 = bs2;
+    }
+
+    public String getOf2() {
+        return of2;
+    }
+
+    public void setOf2(String of2) {
+        this.of2 = of2;
     }
 }

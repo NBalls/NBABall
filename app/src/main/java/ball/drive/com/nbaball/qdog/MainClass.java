@@ -9,7 +9,7 @@ public class MainClass {
 
     public static void main(String[] args) {
         try {
-            ParseData.parseMainData();
+            ParseData.parseMainData(200);
         } catch (Exception e) {
             e.printStackTrace();
         }
