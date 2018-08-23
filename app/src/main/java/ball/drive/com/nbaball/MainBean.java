@@ -99,7 +99,7 @@ public class MainBean {
     }
 
     public String getOuUrl() {
-        return "http://op1.win007.com/oddslist/" + id + ".htm";
+        return "http://1x2d.win007.com/" + id + ".js";
     }
 
     public List<YBean> getyList() {

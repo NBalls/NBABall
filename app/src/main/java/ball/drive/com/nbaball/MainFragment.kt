@@ -32,6 +32,7 @@ class MainFragment: BaseFragment() {
     private lateinit var officialFragment: OfficialFragment
     private lateinit var grabFragment: GrabFragment
     private lateinit var emailFragment: EmailFragment
+    private lateinit var tanFragment: TanFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -45,8 +46,9 @@ class MainFragment: BaseFragment() {
         grabFragment = createGrabFragment()
         emailFragment = createEmailFragment()
         parserFragment = createParserFragment()
+        tanFragment = createTanFragment()
         loadRootFragment(R.id.mainContainerLayout, /*0,*/
-                parserFragment/*, scheduleFragment, grabFragment, officialFragment, teamFragment, emailFragment*/)
+                tanFragment/*parserFragment, scheduleFragment, grabFragment, officialFragment, teamFragment, emailFragment*/)
 
         view?.findViewById<LinearLayout>(R.id.parserLayout)?.onClick {
             showHideFragment(parserFragment)

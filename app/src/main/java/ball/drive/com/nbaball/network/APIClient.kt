@@ -11,7 +11,7 @@ import kotlin.collections.HashMap
  * Created by aaron on 2018/4/9.
  */
 class APIClient {
-    private val netClient: NetClient = NetClient()
+    public val netClient: NetClient = NetClient()
 
     fun requestTeamGroup(): Observable<TeamGroup> {
         return netClient.doGetRequest(URLClient.TEAM_GROUP_URL, HashMap<String, String>())

@@ -20,35 +20,35 @@ public class ParserUtil {
         float mlevel = 0f;
         if (pan.equals("平手")) {
             mlevel = 0f;
-        } else if (pan.equals("让平手/半球")) {
+        } else if (pan.equals("平手/半球")) {
             mlevel = 0.25f;
-        } else if (pan.equals("让半球")) {
+        } else if (pan.equals("半球")) {
             mlevel = 0.5f;
-        } else if (pan.equals("让半/一")) {
+        } else if (pan.equals("半球/一球")) {
             mlevel = 0.75f;
-        } else if (pan.equals("让一球")) {
+        } else if (pan.equals("一球")) {
             mlevel = 1.0f;
-        } else if (pan.equals("让一球/球半")) {
+        } else if (pan.equals("一球/球半")) {
             mlevel = 1.25f;
-        } else if (pan.equals("让球半")) {
+        } else if (pan.equals("球半")) {
             mlevel = 1.5f;
-        } else if (pan.equals("让球半/两球")) {
+        } else if (pan.equals("球半/两球")) {
             mlevel = 1.75f;
-        } else if (pan.equals("让两球")) {
+        } else if (pan.equals("两球")) {
             mlevel = 2.0f;
-        } else if (pan.equals("让两球/两半")) {
+        } else if (pan.equals("两球/两半")) {
             mlevel = 2.25f;
-        } else if (pan.equals("让两半")) {
+        } else if (pan.equals("两球半")) {
             mlevel = 2.5f;
-        } else if (pan.equals("让两半/三球")) {
+        } else if (pan.equals("两球半/三球")) {
             mlevel = 2.75f;
-        } else if (pan.equals("让三球")) {
+        } else if (pan.equals("三球")) {
             mlevel = 3.0f;
         } else if (pan.equals("受让平手/半球")) {
             mlevel = -0.25f;
         } else if (pan.equals("受让半球")) {
             mlevel = -0.5f;
-        } else if (pan.equals("受让半/一")) {
+        } else if (pan.equals("受让半球/一球")) {
             mlevel = -0.75f;
         } else if (pan.equals("受让一球")) {
             mlevel = -1.0f;
@@ -62,7 +62,7 @@ public class ParserUtil {
             mlevel = -2.0f;
         } else if (pan.equals("受让两球/两半")) {
             mlevel = -2.25f;
-        } else if (pan.equals("受让两半")) {
+        } else if (pan.equals("受让两球半")) {
             mlevel = -2.5f;
         } else if (pan.equals("受让两半/三球")) {
             mlevel = -2.75f;

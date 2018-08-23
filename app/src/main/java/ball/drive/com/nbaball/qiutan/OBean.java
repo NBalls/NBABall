@@ -6,13 +6,17 @@ package ball.drive.com.nbaball.qiutan;
 
 public class OBean {
     public String company = "";
-    public String srate = "";
-    public String prate = "";
-    public String frate = "";
+    public String startS = "";
+    public String startP = "";
+    public String startF = "";
+    public String endS = "";
+    public String endP = "";
+    public String endF = "";
 
     @Override
     public String toString() {
-        return company + " 凯利指数：" + srate + "  " + prate + "  " + frate + "\n";
+        return "company:" + company + "  startS:" + startS + "  startP:" + startP + "  startF:" + startF +
+                "  endS:" + endS + "  endP:" + endP + "  endF:" + endF + "\n";
     }
 
     public String getCompany() {
@@ -23,27 +27,51 @@ public class OBean {
         this.company = company;
     }
 
-    public String getSrate() {
-        return srate;
+    public String getStartS() {
+        return startS;
     }
 
-    public void setSrate(String srate) {
-        this.srate = srate;
+    public void setStartS(String startS) {
+        this.startS = startS;
     }
 
-    public String getPrate() {
-        return prate;
+    public String getStartP() {
+        return startP;
     }
 
-    public void setPrate(String prate) {
-        this.prate = prate;
+    public void setStartP(String startP) {
+        this.startP = startP;
     }
 
-    public String getFrate() {
-        return frate;
+    public String getStartF() {
+        return startF;
     }
 
-    public void setFrate(String frate) {
-        this.frate = frate;
+    public void setStartF(String startF) {
+        this.startF = startF;
+    }
+
+    public String getEndS() {
+        return endS;
+    }
+
+    public void setEndS(String endS) {
+        this.endS = endS;
+    }
+
+    public String getEndP() {
+        return endP;
+    }
+
+    public void setEndP(String endP) {
+        this.endP = endP;
+    }
+
+    public String getEndF() {
+        return endF;
+    }
+
+    public void setEndF(String endF) {
+        this.endF = endF;
     }
 }
