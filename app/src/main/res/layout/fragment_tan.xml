@@ -34,7 +34,17 @@
                 android:id="@+id/freshButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="刷新数据"
+                android:text="刷新"
+                android:textSize="13sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
+                />
+
+            <Button
+                android:id="@+id/validateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证"
                 android:textSize="13sp"
                 android:layout_marginLeft="5dp"
                 android:textColor="@android:color/black"

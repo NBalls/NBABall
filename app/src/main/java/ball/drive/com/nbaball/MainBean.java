@@ -15,10 +15,12 @@ public class MainBean {
     public String id = "";
     public String liansai = "";
     public String time = "";
-    public String status = "";
+    public String status = "未开始";
     public String zhu = "";
     public String ke = "";
-    public String bifen = "";
+    public String bifen = "0:0";
+    public String bigUrl = "";
+    public String result = "-";
     public List<YBean> yList = new ArrayList();
     public List<OBean> oList = new ArrayList();
 
@@ -116,5 +118,21 @@ public class MainBean {
 
     public void setoList(List<OBean> oList) {
         this.oList = oList;
+    }
+
+    public String getBigUrl() {
+        return "http://vip.win007.com/OverDown_n.aspx?id=" + id;
+    }
+
+    public void setBigUrl(String bigUrl) {
+        this.bigUrl = bigUrl;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

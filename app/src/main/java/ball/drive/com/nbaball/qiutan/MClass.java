@@ -59,8 +59,14 @@ public class MClass {
                 String liansai = elements.get(i).child(1).text();
                 String time = elements.get(i).child(2).text();
                 String status = elements.get(i).child(3).text();
+                if (status.equals("")) {
+                    status = "未开始";
+                }
                 String zhu = elements.get(i).child(4).child(3).text();
                 String bifen = elements.get(i).child(5).text();
+                if (bifen.trim().equals("-")) {
+                    bifen = "0:0";
+                }
                 String ke = elements.get(i).child(6).child(0).text();
                 mainBean.setId(ids);
                 mainBean.setLiansai(liansai);

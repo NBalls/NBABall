@@ -1,6 +1,7 @@
 package ball.drive.com.nbaball
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -118,9 +119,23 @@ class TanFragment: BaseFragment() {
             rootViews.findViewById<TextView>(R.id.time).text = mList[i].time
             rootViews.findViewById<TextView>(R.id.zhudiu).text = mList[i].getZhu()
             rootViews.findViewById<TextView>(R.id.kedui).text = mList[i].getKe()
+            rootViews.findViewById<TextView>(R.id.statusText).text = mList[i].getStatus()
+            rootViews.findViewById<TextView>(R.id.pointText).text = mList[i].getBifen()
+            rootViews.findViewById<TextView>(R.id.resultText).text = mList[i].getResult()
 
-            rootViews.onClick {
+            rootViews.findViewById<TextView>(R.id.yaText).onClick {
                 startWebActivity(context, mList[i].yaUrl)
+            }
+            rootViews.findViewById<TextView>(R.id.ouText).onClick {
+                startWebActivity(context, mList[i].ouUrl)
+            }
+            rootViews.findViewById<TextView>(R.id.ouText).onClick {
+                startWebActivity(context, mList[i].getBigUrl())
+            }
+            rootViews.onClick {
+                // startWebActivity(context, mList[i].yaUrl)
+                val intent = Intent("bet007.main")
+                startActivity(intent)
             }
             view?.findViewById<LinearLayout>(parentId)?.addView(rootViews)
         }
