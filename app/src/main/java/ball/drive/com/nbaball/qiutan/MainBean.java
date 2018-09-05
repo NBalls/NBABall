@@ -1,4 +1,4 @@
-package ball.drive.com.nbaball;
+package ball.drive.com.nbaball.qiutan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ public class MainBean {
     public String bifen = "0:0";
     public String bigUrl = "";
     public String result = "-";
+    public String ypan = "";
     public List<YBean> yList = new ArrayList();
     public List<OBean> oList = new ArrayList();
 
@@ -134,5 +135,13 @@ public class MainBean {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getYpan() {
+        return ypan;
+    }
+
+    public void setYpan(String ypan) {
+        this.ypan = ypan;
     }
 }

@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import ball.drive.com.nbaball.MainBean;
+
 import ball.drive.com.nbaball.TanCompleteListener;
 import ball.drive.com.nbaball.TanListener;
 import ball.drive.com.nbaball.network.APIClient;
@@ -155,6 +155,23 @@ public class MClass {
         }
     }
 
+    public static List<RBean> parseResult(Document doc) {
+        Elements elements = doc.body().child(0).getElementsByAttribute("infoid");
+        List mList = new ArrayList<RBean>();
+        for (int i = 0; i < elements.size(); i ++) {
+            RBean rbean = new RBean();
+            rbean.setLiansai(elements.get(i).child(0).text());
+            rbean.setDate(elements.get(i).child(1).text());
+            rbean.setStatus(elements.get(i).child(2).text());
+            rbean.setZhudui(elements.get(i).child(3).text());
+            rbean.setPoints(elements.get(i).child(4).text());
+            rbean.setKedui(elements.get(i).child(5).text());
+            mList.add(rbean);
+        }
+
+        return mList;
+    }
+
     public static List<MainBean> parse144(List<MainBean> mDataList) {
         List<MainBean> mList = new ArrayList();
         for (int i = 0; i < mDataList.size(); i ++) {
@@ -251,7 +268,6 @@ public class MClass {
             }
 
             if (count >= 3) {
-                Log.i("MClass", mDataList.get(i).toString());
                 mList.add(mDataList.get(i));
             }
         }
@@ -291,7 +307,6 @@ public class MClass {
             }
 
             if (count >= 2) {
-                Log.i("MClass", mDataList.get(i).toString());
                 mList.add(mDataList.get(i));
             }
         }
