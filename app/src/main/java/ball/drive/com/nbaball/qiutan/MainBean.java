@@ -18,7 +18,7 @@ public class MainBean {
     public String status = "未开始";
     public String zhu = "";
     public String ke = "";
-    public String bifen = "0:0";
+    public String bifen = "未解析";
     public String bigUrl = "";
     public String result = "-";
     public String ypan = "";
@@ -103,6 +103,10 @@ public class MainBean {
 
     public String getOuUrl() {
         return "http://1x2d.win007.com/" + id + ".js";
+    }
+
+    public String getAUrl() {
+        return "http://info.win0168.com/analysis/" + id +"sb.htm";
     }
 
     public List<YBean> getyList() {

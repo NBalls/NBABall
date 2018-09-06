@@ -20,50 +20,51 @@
         android:paddingBottom="10dp"
         >
 
-        <TextView
-            android:id="@+id/number"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:text="001"
-            />
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="right|center_vertical"
+            >
 
-        <TextView
-            android:id="@+id/bisai"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:text="亚运男足"
-            />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/bisai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#660000"
+                    android:gravity="center"
+                    android:text="亚运男足"
+                    />
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#000066"
+                    android:gravity="center"
+                    android:text="20:00"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:text="20:00"
-            />
-
-        <TextView
-            android:id="@+id/zhudiu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:text="卡塔尔U23"
-            android:autoLink="web"
-            android:gravity="center"
-            />
+            <TextView
+                android:id="@+id/zhudiu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:text="卡塔尔U23"
+                android:autoLink="web"
+                android:gravity="center"
+                />
+        </LinearLayout>
 
         <TextView
             android:layout_width="0dp"
@@ -75,25 +76,34 @@
             android:gravity="center"
             />
 
-        <TextView
-            android:id="@+id/kedui"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:text="乌兹别克U23"
-            android:autoLink="web"
-            android:gravity="center"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        >
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="center_vertical|left"
+            >
+            <TextView
+                android:id="@+id/panText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#000066"
+                android:autoLink="web"
+                android:gravity="center"
+                android:text="0.25"
+                />
+            <TextView
+                android:id="@+id/kedui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
+                android:text="乌兹别克U23"
+                android:autoLink="web"
+                android:gravity="center"
+                />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/yaText"
@@ -103,50 +113,7 @@
             android:textSize="15sp"
             android:textColor="@android:color/black"
             android:gravity="center"
-            android:text="亚盘"
-            />
-
-        <TextView
-            android:id="@+id/ouText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:text="欧盘"
-            />
-
-        <TextView
-            android:id="@+id/bigText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:text="大小"
-            />
-
-        <TextView
-            android:id="@+id/yaPanText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:autoLink="web"
-            android:gravity="center"
-            />
-
-        <TextView
-            android:id="@+id/pointText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
+            android:text="欧亚"
             />
 
         <TextView
@@ -156,11 +123,29 @@
             android:layout_weight="1"
             android:textSize="15sp"
             android:textColor="@android:color/black"
-            android:text="结果"
-            android:autoLink="web"
             android:gravity="center"
+            android:text=""
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:text=""
             />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/parseYaLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        ></LinearLayout>
+
 
 </LinearLayout>
 

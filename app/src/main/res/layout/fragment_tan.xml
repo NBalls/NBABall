@@ -31,150 +31,288 @@
             >
             <TextView
                 android:id="@+id/titleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:textSize="15sp"
+                android:gravity="center_vertical"
                 android:textColor="@android:color/black"
                 />
-            <Button
-                android:id="@+id/freshButton"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="刷新"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    >
+                    <Button
+                        android:id="@+id/freshButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="今日"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"
+                        />
+
+                    <Button
+                        android:id="@+id/validateButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="验证"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    >
+                    <Button
+                        android:id="@+id/saveButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="保存"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"
+                        />
+                    <Button
+                        android:id="@+id/queryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="获取"
+                        android:textSize="13sp"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:visibility="gone"
+            >
+            <EditText
+                android:id="@+id/dateEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:padding="5dp"
+                android:hint="yyyy-MM-dd"
+                android:background="@drawable/border_background"
+                />
+
+            <Button
+                android:id="@+id/sureButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="获取"
                 android:textSize="13sp"
                 android:layout_marginLeft="5dp"
                 android:textColor="@android:color/black"
                 />
+        </LinearLayout>
 
-            <Button
-                android:id="@+id/validateButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="验证"
-                android:textSize="13sp"
-                android:layout_marginLeft="5dp"
-                android:textColor="@android:color/black"
+        <LinearLayout
+            android:id="@+id/outOneLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
                 />
+            <TextView
+                android:id="@+id/oneTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="1.44盘（即时盘）"
+                android:background="#EEEEEE"
+                />
+            <LinearLayout
+                android:id="@+id/oneLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/oneTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/black"
-            android:text="1.44盘（即时盘）"
-            android:background="#446688"
-            />
         <LinearLayout
-            android:id="@+id/oneLayout"
+            android:id="@+id/outOne65Layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/one65Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="1.65盘（初盘，即时盘）"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/one65Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/one65Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/black"
-            android:text="1.65盘（初盘，即时盘）"
-            android:background="#446688"
-            />
         <LinearLayout
-            android:id="@+id/one65Layout"
+            android:id="@+id/outCoverLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/coverTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="变盘比赛"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/coverLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/coverTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/black"
-            android:text="连续变盘"
-            android:background="#446688"
-            />
+
         <LinearLayout
-            android:id="@+id/coverLayout"
+            android:id="@+id/outDownLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/downTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="下盘低水"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/downLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/downTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/black"
-            android:text="下盘低水"
-            android:background="#446688"
-            />
         <LinearLayout
-            android:id="@+id/downLayout"
+            android:id="@+id/outZeroLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/zeroTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="平手盘"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/zeroLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/zeroTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/black"
-            android:text="平手盘"
-            android:background="#446688"
-            />
         <LinearLayout
-            android:id="@+id/zeroLayout"
+            android:id="@+id/outCutLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/cutTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@android:color/black"
-            android:text="降盘降水"
-            android:background="#446688"
-            />
-        <LinearLayout
-            android:id="@+id/cutLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/cutTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="降盘降水"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/cutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

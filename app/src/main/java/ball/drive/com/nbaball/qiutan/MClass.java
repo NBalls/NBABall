@@ -112,6 +112,8 @@ public class MClass {
             }
             mainBean.setyList(mList);
 
+            Log.i("########", "########:" + mainBean.getAUrl());
+
             apiClient.getNetClient().doGetRequestHtml(mainBean.getOuUrl(), new HashMap<String, String>())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -213,7 +215,7 @@ public class MClass {
                 if (mDataList.get(i).getyList().get(j).company.contains("易胜博")) {
                     float endPan = Float.valueOf(mDataList.get(i).getyList().get(j).endPan);
                     float startPan = Float.valueOf(mDataList.get(i).getyList().get(j).startPan);
-                    if (Math.abs(startPan - endPan) >= 0.5) {
+                    if (Math.abs(startPan - endPan) >= 0.25 && Math.abs(endPan) < 1.75) {
                         mList.add(mDataList.get(i));
                     }
                 }

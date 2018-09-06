@@ -33,6 +33,9 @@ public class OBean {
 
     public void setStartS(String startS) {
         this.startS = startS;
+        if (startS.trim().equals("")) {
+            this.startS = "0";
+        }
     }
 
     public String getStartP() {
@@ -41,6 +44,9 @@ public class OBean {
 
     public void setStartP(String startP) {
         this.startP = startP;
+        if (startP.trim().equals("")) {
+            this.startP = "0";
+        }
     }
 
     public String getStartF() {
@@ -49,6 +55,9 @@ public class OBean {
 
     public void setStartF(String startF) {
         this.startF = startF;
+        if (startF.trim().equals("")) {
+            this.startF = "0";
+        }
     }
 
     public String getEndS() {
@@ -57,6 +66,9 @@ public class OBean {
 
     public void setEndS(String endS) {
         this.endS = endS;
+        if (endS.trim().equals("")) {
+            this.endS = "0";
+        }
     }
 
     public String getEndP() {
@@ -65,6 +77,9 @@ public class OBean {
 
     public void setEndP(String endP) {
         this.endP = endP;
+        if (endP.trim().equals("")) {
+            this.endP = "0";
+        }
     }
 
     public String getEndF() {
@@ -73,5 +88,8 @@ public class OBean {
 
     public void setEndF(String endF) {
         this.endF = endF;
+        if (endF.trim().equals("")) {
+            this.endF = "0";
+        }
     }
 }

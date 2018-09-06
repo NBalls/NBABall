@@ -199,7 +199,6 @@ class ParserFragment: BaseFragment() {
     private fun fillItem(mList: ArrayList<MBean>, parentId: Int) {
         for (i in 0 until mList.size) {
             val rootViews = LayoutInflater.from(context).inflate(R.layout.fragment_parser_item, null, false)
-            rootViews.findViewById<TextView>(R.id.number).text = changeNumIndex(i + 1)
             rootViews.findViewById<TextView>(R.id.bisai).text = mList[i].liansai
             rootViews.findViewById<TextView>(R.id.time).text = mList[i].time
             rootViews.findViewById<TextView>(R.id.zhudiu).text = mList[i].getZudui()
