@@ -33,7 +33,7 @@
                 android:id="@+id/titleText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textSize="15sp"
                 android:gravity="center_vertical"
                 android:textColor="@android:color/black"
@@ -41,18 +41,20 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:orientation="vertical"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:orientation="horizontal"
                     >
                     <Button
                         android:id="@+id/freshButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="今日"
                         android:textSize="13sp"
                         android:layout_marginLeft="5dp"
@@ -61,13 +63,15 @@
 
                     <Button
                         android:id="@+id/validateButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="验证"
                         android:textSize="13sp"
                         android:layout_marginLeft="5dp"
                         android:textColor="@android:color/black"
                         />
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -76,8 +80,9 @@
                     >
                     <Button
                         android:id="@+id/saveButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="保存"
                         android:textSize="13sp"
                         android:layout_marginLeft="5dp"
@@ -85,13 +90,15 @@
                         />
                     <Button
                         android:id="@+id/queryButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="获取"
                         android:textSize="13sp"
                         android:layout_marginLeft="5dp"
                         android:textColor="@android:color/black"
                         />
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -109,9 +116,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:hint="yyyy-MM-dd"
                 android:background="@drawable/border_background"
                 />
@@ -126,68 +133,17 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="@android:color/black"
                 />
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/outOneLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@android:color/black"
-                />
-            <TextView
-                android:id="@+id/oneTitle"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/goneButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:textColor="#cc0000"
-                android:text="1.44盘（即时盘）"
-                android:background="#EEEEEE"
+                android:layout_weight="1"
+                android:text="隐藏"
+                android:textSize="13sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/black"
                 />
-            <LinearLayout
-                android:id="@+id/oneLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/outOne65Layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@android:color/black"
-                />
-            <TextView
-                android:id="@+id/one65Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:textColor="#cc0000"
-                android:text="1.65盘（初盘，即时盘）"
-                android:background="#eeeeee"
-                />
-            <LinearLayout
-                android:id="@+id/one65Layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -315,6 +271,129 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/outOne25Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/one25Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="平手至平半"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/one25Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/outDeepLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/deepTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="深盘变盘"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/deepLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/outOneLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/oneTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="1.44盘（即时盘）"
+                android:background="#EEEEEE"
+                />
+            <LinearLayout
+                android:id="@+id/oneLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/outOne65Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@android:color/black"
+                />
+            <TextView
+                android:id="@+id/one65Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#cc0000"
+                android:text="1.65盘（初盘，即时盘）"
+                android:background="#eeeeee"
+                />
+            <LinearLayout
+                android:id="@+id/one65Layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
 

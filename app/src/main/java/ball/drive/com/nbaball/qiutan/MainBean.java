@@ -1,16 +1,14 @@
 package ball.drive.com.nbaball.qiutan;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import ball.drive.com.nbaball.qiutan.OBean;
-import ball.drive.com.nbaball.qiutan.YBean;
 
 /**
  * Created by aaron on 2018/7/23.
  */
 
-public class MainBean {
+public class MainBean implements Serializable {
 
     public String id = "";
     public String liansai = "";

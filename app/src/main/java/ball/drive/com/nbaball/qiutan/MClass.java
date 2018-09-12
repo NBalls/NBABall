@@ -24,11 +24,11 @@ import rx.schedulers.Schedulers;
  * 解析数据
  */
 public class MClass {
-    private static APIClient apiClient = new APIClient();
-    private static List<MainBean> mDataList = new ArrayList();
     public static TanCompleteListener tanCompleteListener = null;
-    public static int count = 0;
-    public static boolean isFinish = false;
+    private static APIClient apiClient = new APIClient();
+    private static ArrayList mDataList = new ArrayList();
+    private static boolean isFinish = false;
+    private static int count = 0;
 
     /**
      * 解析比赛数据
@@ -36,6 +36,7 @@ public class MClass {
     public static void parseMainData(Document doc) {
         count = 0;
         isFinish = false;
+        mDataList.clear();
         final Elements elements = doc.body().getElementsByAttribute("index");
         final TanListener tanListener = new TanListener() {
             @Override
@@ -47,7 +48,7 @@ public class MClass {
                 }
             }
         };
-        for (int i = 0; i < Math.min(elements.size(), 200); i ++) {
+        for (int i = 3; i < Math.min(elements.size(), 200); i ++) {
             // 亚盘欧指数据不为空，状态为空
             if (!TextUtils.isEmpty(elements.get(i).child(8).text())
                     && TextUtils.isEmpty(elements.get(i).child(3).text())) {
@@ -112,8 +113,6 @@ public class MClass {
             }
             mainBean.setyList(mList);
 
-            Log.i("########", "########:" + mainBean.getAUrl());
-
             apiClient.getNetClient().doGetRequestHtml(mainBean.getOuUrl(), new HashMap<String, String>())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -157,6 +156,57 @@ public class MClass {
         }
     }
 
+    public static void parseRData(MainBean mainBean) {
+        // TODO 解析分析数据（对往比赛，近期比赛）
+        apiClient.getNetClient().doGetRequestHtml(mainBean.getAUrl(), new HashMap<String, String>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        Log.i("MClass", s);
+                        // 解析亚盘数据
+                        /*String paramYStr1 = s.substring(s.indexOf("Vs_hOdds=[["));
+                        String paramYStr2 = paramYStr1.substring(11, paramYStr1.indexOf("]];"));
+                        String[] arrYStr1 = paramYStr2.split("],\\[");
+                        for (int i = 0; i < arrYStr1.length; i ++) {
+                            // Log.i("MClass", arrYStr1[i] + "");
+                        }
+                        // 解析欧盘数据
+                        String paramOStr1 = s.substring(s.indexOf("Vs_eOdds = [["));
+                        String paramOStr2 = paramOStr1.substring(11, paramOStr1.indexOf("]];"));
+                        String[] arrOStr1 = paramOStr2.split("],\\[");
+                        for (int i = 0; i < arrOStr1.length; i ++) {
+                            Log.i("MClass", arrOStr1[i] + "");
+                        }
+
+
+                        String subStr1 = s.substring(s.indexOf("v_data"));
+                        String subStr2 = subStr1.substring(11, subStr1.indexOf("]];"));
+                        String[] arrayStr1 = subStr2.split("],\\[");
+                        String subStr3 = arrayStr1[0];
+                        String[] arrayStr2 = subStr3.split(",");
+
+                        NBean nBean = new NBean();
+                        nBean.setDate(arrayStr2[0]);
+                        String kedui = arrayStr2[7];
+                        nBean.setKedui(kedui.substring(kedui.indexOf(">") + 1, kedui.indexOf("<")));
+                        nBean.setKePoint(arrayStr2[9]);
+                        nBean.setKePai(kedui.substring(kedui.indexOf("：") + 1, kedui.indexOf("\">")).trim());
+                        nBean.setLiansai(arrayStr2[2]);
+                        String zhudui = arrayStr2[5];
+                        nBean.setZhudui(zhudui.substring(zhudui.indexOf(">") + 1, zhudui.indexOf("<")));
+                        nBean.setZhuPoint(arrayStr2[8]);
+                        nBean.setZhuPai(zhudui.substring(zhudui.indexOf("：") + 1, zhudui.indexOf("\">")).trim());
+                        nBean.setIds(arrayStr2[15]);
+                        // getY(arrYStr1, nBean.getIds());
+                        String temp1 = s.substring(s.indexOf("[" + nBean.getIds() + ",8"));
+                        String temp2 = temp1.substring(0, temp1.indexOf("],\\["));
+                        Log.i("MClass", temp2);*/
+                    }
+                });
+    }
+
     public static List<RBean> parseResult(Document doc) {
         Elements elements = doc.body().child(0).getElementsByAttribute("infoid");
         List mList = new ArrayList<RBean>();
@@ -169,148 +219,6 @@ public class MClass {
             rbean.setPoints(elements.get(i).child(4).text());
             rbean.setKedui(elements.get(i).child(5).text());
             mList.add(rbean);
-        }
-
-        return mList;
-    }
-
-    public static List<MainBean> parse144(List<MainBean> mDataList) {
-        List<MainBean> mList = new ArrayList();
-        for (int i = 0; i < mDataList.size(); i ++) {
-            for (int j = 0; j < mDataList.get(i).getoList().size(); j ++) {
-                if (mDataList.get(i).getoList().get(j).company.contains("威廉希尔")) {
-                    if (mDataList.get(i).getoList().get(j).endS.equals("1.44")
-                            || mDataList.get(i).getoList().get(j).endF.equals("1.44")) {
-                        mList.add(mDataList.get(i));
-                    }
-                }
-            }
-        }
-
-        return mList;
-    }
-
-    public static List<MainBean> parse165(List<MainBean> mDataList) {
-        List<MainBean> mList = new ArrayList();
-        for (int i = 0; i < mDataList.size(); i ++) {
-            for (int j = 0; j < mDataList.get(i).getoList().size(); j ++) {
-                if (mDataList.get(i).getoList().get(j).company.contains("威廉希尔")) {
-                    if (mDataList.get(i).getoList().get(j).startS.equals("1.65")
-                            || mDataList.get(i).getoList().get(j).startF.equals("1.65")
-                            || mDataList.get(i).getoList().get(j).endS.equals("1.65")
-                            || mDataList.get(i).getoList().get(j).endF.equals("1.65")) {
-                        mList.add(mDataList.get(i));
-                    }
-                }
-            }
-        }
-
-        return mList;
-    }
-
-    public static List<MainBean> parseCOver(List<MainBean> mDataList) {
-        List<MainBean> mList = new ArrayList();
-        for (int i = 0; i < mDataList.size(); i ++) {
-            for (int j = 0; j < mDataList.get(i).getyList().size(); j ++) {
-                if (mDataList.get(i).getyList().get(j).company.contains("易胜博")) {
-                    float endPan = Float.valueOf(mDataList.get(i).getyList().get(j).endPan);
-                    float startPan = Float.valueOf(mDataList.get(i).getyList().get(j).startPan);
-                    if (Math.abs(startPan - endPan) >= 0.25 && Math.abs(endPan) < 1.75) {
-                        mList.add(mDataList.get(i));
-                    }
-                }
-            }
-        }
-
-        return mList;
-    }
-
-    public static List<MainBean> parseDown(List<MainBean> mDataList) {
-        List<MainBean> mList = new ArrayList();
-        for (int i = 0; i < mDataList.size(); i ++) {
-            int count = 0;
-            for (int j = 0; j < mDataList.get(i).getyList().size(); j ++) {
-                if (mDataList.get(i).getyList().get(j).company.contains("易胜博")
-                        || mDataList.get(i).getyList().get(j).company.contains("365")
-                        || mDataList.get(i).getyList().get(j).company.contains("Crown")) {
-                    float endPan = Float.valueOf(mDataList.get(i).getyList().get(j).endPan);
-                    float startPan = Float.valueOf(mDataList.get(i).getyList().get(j).startPan);
-                    if (endPan > 0 && endPan < 1 && startPan - endPan == 0f && Float.valueOf(mDataList.get(i).getyList().get(j).startKRate) -
-                            Float.valueOf(mDataList.get(i).getyList().get(j).endKRate) > 0) {
-                        count = count + 1;
-                    } else if (endPan < 0 && endPan > -1 && startPan - endPan == 0f && Float.valueOf(mDataList.get(i).getyList().get(j).endZRate) -
-                            Float.valueOf(mDataList.get(i).getyList().get(j).startZRate) < 0) {
-                        count = count + 1;
-                    }
-                }
-            }
-
-            if (count >= 3) {
-                mList.add(mDataList.get(i));
-            }
-        }
-
-        return mList;
-    }
-
-    public static List<MainBean> parseZero(List<MainBean> mDataList) {
-        List<MainBean> mList = new ArrayList();
-        for (int i = 0; i < mDataList.size(); i ++) {
-            int count = 0;
-            for (int j = 0; j < mDataList.get(i).getyList().size(); j ++) {
-                if (mDataList.get(i).getyList().get(j).company.contains("易胜博")
-                        || mDataList.get(i).getyList().get(j).company.contains("365")
-                        || mDataList.get(i).getyList().get(j).company.contains("Crown")) {
-                    float endPan = Float.valueOf(mDataList.get(i).getyList().get(j).endPan);
-                    float startPan = Float.valueOf(mDataList.get(i).getyList().get(j).startPan);
-                    if (startPan - endPan == 0f && startPan == 0f) {
-                        count = count + 1;
-                    }
-                }
-            }
-
-            if (count >= 3) {
-                mList.add(mDataList.get(i));
-            }
-        }
-
-        return mList;
-    }
-
-
-    public static List<MainBean> parseCut(List<MainBean> mDataList) {
-        List<MainBean> mList = new ArrayList();
-        for (int i = 0; i < mDataList.size(); i ++) {
-            int count = 0;
-            for (int j = 0; j < mDataList.get(i).getyList().size(); j ++) {
-                if (mDataList.get(i).getyList().get(j).company.contains("易胜博")
-                        || mDataList.get(i).getyList().get(j).company.contains("365")
-                        || mDataList.get(i).getyList().get(j).company.contains("Crown")) {
-                    float endPan = Float.valueOf(mDataList.get(i).getyList().get(j).endPan);
-                    float startPan = Float.valueOf(mDataList.get(i).getyList().get(j).startPan);
-                    if (endPan >= 0 && endPan <= 1 && startPan >= 0 && startPan <= 1) {
-                        if (endPan - startPan < 0) {
-                            float endRate = Float.valueOf(mDataList.get(i).getyList().get(j).endKRate);
-                            float startRate = Float.valueOf(mDataList.get(i).getyList().get(j).startKRate);
-                            if (endRate - startRate < 0) {
-                                count = count + 1;
-                            }
-                        }
-                    } else if (endPan <= 0 && endPan >= -1 && startPan <= 0 && startPan >= -1) {
-                        if (endPan - startPan > 0) {
-                            float endRate = Float.valueOf(mDataList.get(i).getyList().get(j).endZRate);
-                            float startRate = Float.valueOf(mDataList.get(i).getyList().get(j).startZRate);
-                            if (endRate - startRate < 0) {
-                                count = count + 1;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (count >= 2) {
-                mList.add(mDataList.get(i));
-            }
         }
 
         return mList;

@@ -15,6 +15,7 @@ import android.webkit.JavascriptInterface
 import android.widget.*
 import ball.drive.com.nbaball.qiutan.MClass
 import ball.drive.com.nbaball.qiutan.MainBean
+import ball.drive.com.nbaball.qiutan.PrintClass
 import ball.drive.com.nbaball.qiutan.RBean
 import ball.drive.com.nbaball.utils.getYMD
 import ball.drive.com.nbaball.utils.getYMDHMS
@@ -29,6 +30,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by aaron on 2018/4/11.
@@ -100,6 +102,16 @@ class TanFragment: BaseFragment() {
         } else {
             view?.findViewById<LinearLayout>(R.id.outCutLayout)?.visibility = View.GONE
         }
+        if (BuildConfig.ISSHOW_ONE25_LAYOUT) {
+            view?.findViewById<LinearLayout>(R.id.outOne25Layout)?.visibility = View.VISIBLE
+        } else {
+            view?.findViewById<LinearLayout>(R.id.outOne25Layout)?.visibility = View.GONE
+        }
+        if (BuildConfig.ISSHOW_DEEP_LAYOUT) {
+            view?.findViewById<LinearLayout>(R.id.outDeepLayout)?.visibility = View.VISIBLE
+        } else {
+            view?.findViewById<LinearLayout>(R.id.outDeepLayout)?.visibility = View.GONE
+        }
     }
 
     private fun initWebView() {
@@ -132,7 +144,6 @@ class TanFragment: BaseFragment() {
             if (sb.toString() != sdf.format(Date())) {
                 view?.findViewById<Button>(R.id.validateButton)?.text = "验证中..."
                 val url = DEFAULT_VALIDATE_URL + sb.toString() + ".htm"
-                Log.i("######", "验证地址URL：" + url)
                 webView2?.loadUrl(url)
             } else {
                 Toast.makeText(context, "数据无法验证.....", Toast.LENGTH_SHORT).show()
@@ -152,6 +163,10 @@ class TanFragment: BaseFragment() {
             view?.findViewById<LinearLayout>(R.id.dateLayout)?.visibility = View.VISIBLE
         }
 
+        view?.findViewById<Button>(R.id.goneButton)?.onClick {
+            view?.findViewById<LinearLayout>(R.id.dateLayout)?.visibility = View.GONE
+        }
+
         view?.findViewById<Button>(R.id.sureButton)?.onClick {
             val date = view?.findViewById<EditText>(R.id.dateEdit)?.text.toString()
             if (TextUtils.isEmpty(date) || !date.matches(Regex("\\d\\d\\d\\d-\\d\\d-\\d\\d"))) {
@@ -165,7 +180,7 @@ class TanFragment: BaseFragment() {
             }
         }
 
-        val data = sharedPreferences.getString(SP_DATA_KEY, "{}")
+        val data = sharedPreferences.getString(SP_DATA_KEY, "[]")
         val date = sharedPreferences.getString(SP_DATE_KEY, "")
         val dateTime = sharedPreferences.getString(SP_TIME_KEY, "")
         val time = dateTime.substring(dateTime.indexOf(" ") + 1)
@@ -173,19 +188,15 @@ class TanFragment: BaseFragment() {
     }
 
     private fun saveData(mDataList: List<MainBean>) {
-        Log.i(TAG, "数据解析完成.........")
-        val date = sharedPreferences.getString(SP_DATE_KEY, "")
-        if (!TextUtils.isEmpty(date) && date != getYMD()) {
-            // Log.i(TAG, "清空历史数据......")
-            // sharedPreferences.edit().clear().apply()
-        }
         Log.i(TAG,"保存本次数据....... 比赛数量：" + mDataList.size)
+        sharedPreferences.edit().putString(SP_DATA_KEY, "[]").apply()
         sharedPreferences.edit().putString(SP_TIME_KEY, getYMDHMS()).apply()
         sharedPreferences.edit().putString(SP_DATE_KEY, getYMD()).apply()
         sharedPreferences.edit().putString(SP_DATA_KEY, Gson().toJson(mDataList)).apply()
 
         val dateTime = sharedPreferences.getString(SP_TIME_KEY, "")
         val time = dateTime.substring(dateTime.indexOf(" ") + 1)
+        val date = sharedPreferences.getString(SP_DATE_KEY, "")
         parseData(sharedPreferences.getString(SP_DATA_KEY, "{}"), date, time)
     }
 
@@ -193,16 +204,18 @@ class TanFragment: BaseFragment() {
         val mDataList = Gson().fromJson<List<MainBean>>(data, object : TypeToken<List<MainBean>>() {}.type)
         val sb = StringBuffer()
         sb.append("有效比赛:").append(mDataList.size).append("场\n")
-        sb.append("数据刷新日期:").append(date).append("\n")
-        sb.append("数据刷新时间:").append(time).append("\n")
+        sb.append("刷新日期:").append(date).append("\n")
+        sb.append("刷新时间:").append(time).append("\n")
         view?.findViewById<TextView>(R.id.titleText)?.text = sb.toString()
 
-        fillItem(MClass.parse144(mDataList) as ArrayList<MainBean>, R.id.oneLayout)
-        fillItem(MClass.parse165(mDataList) as ArrayList<MainBean>, R.id.one65Layout)
-        fillItem(MClass.parseCOver(mDataList) as ArrayList<MainBean>, R.id.coverLayout)
-        fillItem(MClass.parseDown(mDataList) as ArrayList<MainBean>, R.id.downLayout)
-        fillItem(MClass.parseZero(mDataList) as ArrayList<MainBean>, R.id.zeroLayout)
-        fillItem(MClass.parseCut(mDataList) as ArrayList<MainBean>, R.id.cutLayout)
+        fillItem(PrintClass.parse144(mDataList) as ArrayList<MainBean>, R.id.oneLayout)
+        fillItem(PrintClass.parse165(mDataList) as ArrayList<MainBean>, R.id.one65Layout)
+        fillItem(PrintClass.parseCOver(mDataList) as ArrayList<MainBean>, R.id.coverLayout)
+        fillItem(PrintClass.parseDown(mDataList) as ArrayList<MainBean>, R.id.downLayout)
+        fillItem(PrintClass.parseZero(mDataList) as ArrayList<MainBean>, R.id.zeroLayout)
+        fillItem(PrintClass.parseCut(mDataList) as ArrayList<MainBean>, R.id.cutLayout)
+        fillItem(PrintClass.parse025(mDataList) as ArrayList<MainBean>, R.id.one25Layout)
+        fillItem(PrintClass.parseDeep(mDataList) as ArrayList<MainBean>, R.id.deepLayout)
     }
 
     private fun fillItem(mList: ArrayList<MainBean>, parentId: Int) {
@@ -215,6 +228,24 @@ class TanFragment: BaseFragment() {
             rootViews.findViewById<TextView>(R.id.kedui).text = mList[i].getKe()
             rootViews.findViewById<TextView>(R.id.panText).text = getEndPan(mList[i])
             rootViews.findViewById<TextView>(R.id.resultText).text = mList[i].bifen
+            val bifen = mList[i].bifen
+            if (bifen.matches(Regex("\\d-\\d"))) {
+                val zPoint = bifen.substring(0, 1)
+                val kPoint = bifen.substring(2, 3)
+                if (zPoint.toInt() > kPoint.toInt()) {
+                    rootViews.findViewById<TextView>(R.id.rText).text = "赢"
+                    rootViews.findViewById<TextView>(R.id.rText).textColor = Color.parseColor("#FF0000")
+                } else if (zPoint.toInt() < kPoint.toInt()) {
+                    rootViews.findViewById<TextView>(R.id.rText).text = "输"
+                    rootViews.findViewById<TextView>(R.id.rText).textColor = Color.parseColor("#00FF00")
+                } else {
+                    rootViews.findViewById<TextView>(R.id.rText).text = "平"
+                    rootViews.findViewById<TextView>(R.id.rText).textColor = Color.parseColor("#000000")
+                }
+            } else {
+                rootViews.findViewById<TextView>(R.id.rText).text = "未"
+                rootViews.findViewById<TextView>(R.id.rText).textColor = Color.parseColor("#000000")
+            }
             parseYa(rootViews.findViewById(R.id.parseYaLayout), mList[i])
 
             rootViews.findViewById<TextView>(R.id.yaText).onClick {
@@ -225,9 +256,20 @@ class TanFragment: BaseFragment() {
                     layout.visibility = View.VISIBLE
                 }
             }
+
+            rootViews.findViewById<LinearLayout>(R.id.liansaiLayout).onClick {
+                val intent = Intent(context, TDetailActivity::class.java)
+                intent.putExtra("mainBean", mList[i])
+                context.startActivity(intent)
+            }
+
+            rootViews.findViewById<TextView>(R.id.analyseText).onClick {
+                Toast.makeText(context, "打开分析数据......", Toast.LENGTH_SHORT).show()
+            }
+
             rootViews.onClick {
-                val intent = Intent("bet007.main")
-                startActivity(intent)
+                // val intent = Intent("bet007.main")
+                // startActivity(intent)
             }
             val lps = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             view?.findViewById<LinearLayout>(parentId)?.addView(rootViews, lps)
@@ -406,12 +448,14 @@ class TanFragment: BaseFragment() {
             // 更新保存数据
             view?.findViewById<Button>(R.id.validateButton)?.text = "验证"
             sharedPreferences.edit().putString(SP_DATA_KEY, Gson().toJson(mDataList)).apply()
-            fillItem(MClass.parse144(mDataList) as ArrayList<MainBean>, R.id.oneLayout)
-            fillItem(MClass.parse165(mDataList) as ArrayList<MainBean>, R.id.one65Layout)
-            fillItem(MClass.parseCOver(mDataList) as ArrayList<MainBean>, R.id.coverLayout)
-            fillItem(MClass.parseDown(mDataList) as ArrayList<MainBean>, R.id.downLayout)
-            fillItem(MClass.parseZero(mDataList) as ArrayList<MainBean>, R.id.zeroLayout)
-            fillItem(MClass.parseCut(mDataList) as ArrayList<MainBean>, R.id.cutLayout)
+            fillItem(PrintClass.parse144(mDataList) as ArrayList<MainBean>, R.id.oneLayout)
+            fillItem(PrintClass.parse165(mDataList) as ArrayList<MainBean>, R.id.one65Layout)
+            fillItem(PrintClass.parseCOver(mDataList) as ArrayList<MainBean>, R.id.coverLayout)
+            fillItem(PrintClass.parseDown(mDataList) as ArrayList<MainBean>, R.id.downLayout)
+            fillItem(PrintClass.parseZero(mDataList) as ArrayList<MainBean>, R.id.zeroLayout)
+            fillItem(PrintClass.parseCut(mDataList) as ArrayList<MainBean>, R.id.cutLayout)
+            fillItem(PrintClass.parse025(mDataList) as ArrayList<MainBean>, R.id.one25Layout)
+            fillItem(PrintClass.parseDeep(mDataList) as ArrayList<MainBean>, R.id.deepLayout)
         }
     }
 }

@@ -1,10 +1,12 @@
 package ball.drive.com.nbaball.qiutan;
 
+import java.io.Serializable;
+
 /**
  * Created by aaron on 2018/7/24.
  */
 
-public class YBean {
+public class YBean implements Serializable {
     public String company = "";
     public String startTime = "";
     public String startZRate = "";

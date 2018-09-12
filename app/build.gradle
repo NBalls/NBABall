@@ -26,6 +26,8 @@ android {
             buildConfigField("boolean", "ISSHOW_DOWN_LAYOUT", "true")
             buildConfigField("boolean", "ISSHOW_ZERO_LAYOUT", "true")
             buildConfigField("boolean", "ISSHOW_CUT_LAYOUT", "true")
+            buildConfigField("boolean", "ISSHOW_ONE25_LAYOUT", "true")
+            buildConfigField("boolean", "ISSHOW_DEEP_LAYOUT", "true")
         }
     }
 }
