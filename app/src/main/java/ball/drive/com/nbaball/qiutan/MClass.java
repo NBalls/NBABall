@@ -41,6 +41,7 @@ public class MClass {
         final TanListener tanListener = new TanListener() {
             @Override
             public void onTanListener() {
+                Log.i("MClass", "######### size:" + mDataList.size() + "   count:" + (count - 3));
                 if (mDataList.size() >= count - 3 && isFinish) {
                     if (tanCompleteListener != null) {
                         tanCompleteListener.onTanCompleteListener(mDataList);
@@ -113,6 +114,7 @@ public class MClass {
             }
             mainBean.setyList(mList);
 
+            Log.i("MClass", "ouUrl:" + mainBean.getOuUrl());
             apiClient.getNetClient().doGetRequestHtml(mainBean.getOuUrl(), new HashMap<String, String>())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -120,7 +122,7 @@ public class MClass {
                         @Override
                         public void call(String s) {
                             String[] result = s.split("\n");
-                            String ouData = result[26];
+                            String ouData = result[28];
                             if (ouData.contains("\"") && ouData.contains("\"")) {
                                 String ouData1 = ouData.substring(ouData.indexOf("\"") + 1, ouData.lastIndexOf("\""));
                                 String[] ouData2 = ouData1.split("\",\"");
